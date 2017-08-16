@@ -1,0 +1,40 @@
+{
+  "name": "climbzilla-web",
+  "version": "0.1.0-alpha",
+  "description": "Simple web client for https://vk.com/climbzilla",
+  "main": "index.js",
+  "scripts": {
+    "sync": "npm prune && npm install",
+    "dev": "DEBUG=climbzilla-web:* nodemon ./bin/www",
+    "start": "node ./bin/www",
+    "lint": "eslint ./",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "debug": "2.6.3",
+    "express": "4.15.2",
+    "morgan": "1.8.1",
+    "pug": "2.0.0-beta11",
+    "serve-favicon": "2.4.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/okv/climbzilla-web.git"
+  },
+  "keywords": [
+    "climbzilla",
+    "climbing"
+  ],
+  "author": "Oleg Korobenko <oleg.korobenko@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/okv/climbzilla-web/issues"
+  },
+  "homepage": "https://github.com/okv/climbzilla-web#readme",
+  "devDependencies": {
+    "eslint": "4.4.1",
+    "eslint-config-airbnb-base": "11.3.1",
+    "eslint-plugin-import": "2.7.0",
+    "nodemon": "1.11.0"
+  }
+}
