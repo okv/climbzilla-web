@@ -5,14 +5,16 @@
   "main": "index.js",
   "scripts": {
     "sync": "npm prune && npm install",
-    "dev": "DEBUG=climbzilla-web:* nodemon ./bin/www",
+    "dev": "test -z $NODE_ENV && export NODE_ENV=development; DEBUG=climbzilla-web:* nodemon ./bin/www",
     "start": "node ./bin/www",
     "lint": "eslint ./",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "bluebird": "3.5.0",
     "debug": "2.6.3",
     "express": "4.15.2",
+    "got": "7.1.0",
     "morgan": "1.8.1",
     "pug": "2.0.0-beta11",
     "serve-favicon": "2.4.2"
@@ -35,6 +37,7 @@
     "eslint": "4.4.1",
     "eslint-config-airbnb-base": "11.3.1",
     "eslint-plugin-import": "2.7.0",
+    "mocky": "0.1.11",
     "nodemon": "1.11.0"
   }
 }
