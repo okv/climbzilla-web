@@ -1,9 +1,9 @@
 extends layout
 
 block content
-  h1 Скалодромы
+	h1 Скалодромы
 
-  ul
-    each hall in halls
-      li 
-        a(href="/halls/" + hall.id + "/routes") #{hall.name}
+	ul
+		each hall in halls
+			li 
+				a(href="/halls/" + hall.id + "/routes") #{hall.name}

@@ -4,15 +4,15 @@ const configHolder = require('../../config/holder');
 
 // eslint-disable-next-line arrow-body-style
 const baseRequest = (path, options) => {
-  return Promise.resolve()
-    .then(() => configHolder.get())
-    .then((config) => {
-      const {host, port} = config.services.climbzillaApi;
-      const baseUrl = `${host}:${port}`;
+	return Promise.resolve()
+		.then(() => configHolder.get())
+		.then((config) => {
+			const {host, port} = config.services.climbzillaApi;
+			const baseUrl = `${host}:${port}`;
 
-      return got(baseUrl + path, Object.assign({json: true}, options));
-    })
-    .then(res => res.body);
+			return got(baseUrl + path, Object.assign({json: true}, options));
+		})
+		.then(res => res.body);
 };
 
 exports.getHalls = () => baseRequest('/v03/hall');
