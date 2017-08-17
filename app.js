@@ -10,7 +10,9 @@ Promise.promisifyAll(require('fs'));
 Promise.promisifyAll(require('path'));
 
 const configHolder = require('./config/holder');
-const indexRoute = require('./routes/index');
+
+const indexRouter = require('./routes/index');
+const hallsRouter = require('./routes/halls');
 
 const app = express();
 
@@ -38,7 +40,8 @@ Promise.resolve()
     app.use(logger('dev'));
     app.use(express.static(path.join(__dirname, 'public')));
 
-    app.use('/', indexRoute);
+    app.use('/', indexRouter);
+    app.use('/halls', hallsRouter);
 
     // catch 404 and forward to error handler
     app.use((req, res, next) => {

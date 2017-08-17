@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1 Скалодромы
+
+  ul
+    each hall in halls
+      li 
+        a(href="/halls/" + hall.id + "/routes") #{hall.name}
