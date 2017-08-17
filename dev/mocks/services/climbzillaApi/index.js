@@ -1,5 +1,6 @@
 const fs = require('fs');
 const pathUtils = require('path');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const mocky = require('mocky');
 const Promise = require('bluebird');
 const debug = require('debug')('climbzilla-web:climbzilla-api-server-mock');
@@ -13,7 +14,7 @@ const server = mocky.createServer([{
     Promise.resolve()
       .then(() => pathUtils.join(dataDir, 'halls.json'))
       .then(filePath => fs.readFileAsync(filePath, {encoding: 'utf8'}))
-      .then(content => callback(null, { status: 200, body: content }))
+      .then(content => callback(null, {status: 200, body: content}))
       .catch(err => callback(err));
   }
 }]);

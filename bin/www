@@ -10,8 +10,7 @@ const configHolder = require('../config/holder');
 Promise.resolve()
   .then(() => configHolder.get())
   .then((config) => {
-    const host = config.listen.host;
-    const port = config.listen.port;
+    const {host, port} = config.listen;
 
     var server = http.createServer(app);
 

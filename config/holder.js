@@ -11,7 +11,7 @@ configHolder.get = function get() {
 
   return Promise.resolve()
     .then(() => pathUtils.join(__dirname, `${process.env.NODE_ENV}.json`))
-    .then(configPath => fs.readFileAsync(configPath, { encoding: 'utf8' }))
+    .then(configPath => fs.readFileAsync(configPath, {encoding: 'utf8'}))
     .then(configString => JSON.parse(configString))
     .then((config) => {
       this.config = config;

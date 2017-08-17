@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/', (req, res, next) => {
   Promise.resolve()
     .then(() => climbzillaApiRequest.getHalls())
-    .then(halls => res.render('halls', { halls }))
+    .then(halls => res.render('halls', {halls}))
     .catch(err => next(err));
 });
 

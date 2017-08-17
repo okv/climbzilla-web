@@ -23,13 +23,14 @@ Promise.resolve()
 
     if (config.mocks && config.mocks.services) {
       if (config.mocks.services.climbzillaApi) {
+        // eslint-disable-next-line global-require
         const climbzillaApiServer = require('./dev/mocks/services/climbzillaApi');
         climbzillaApiServer.listen(
           config.services.climbzillaApi.port,
           config.services.climbzillaApi.host
         );
       }
-    } 
+    }
 
     // view engine setup
     app.set('views', path.join(__dirname, 'views'));
@@ -51,6 +52,7 @@ Promise.resolve()
     });
 
     // error handler
+    // eslint-disable-next-line no-unused-vars
     app.use((err, req, res, next) => {
       // set locals, only providing error in development
       res.locals.message = err.message;
@@ -60,9 +62,9 @@ Promise.resolve()
       res.status(err.status || 500);
       res.render('error');
     });
-
   })
   .catch((err) => {
+    // eslint-disable-next-line no-console
     console.error(err.stack || err);
     process.exit(1);
   });
