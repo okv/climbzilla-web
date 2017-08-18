@@ -10,9 +10,9 @@ configHolder.get = function get() {
 	}
 
 	return Promise.resolve()
-		.then(() => pathUtils.join(__dirname, `${process.env.NODE_ENV}.json`))
-		.then(configPath => fs.readFileAsync(configPath, {encoding: 'utf8'}))
-		.then(configString => JSON.parse(configString))
+		.then(() => { return pathUtils.join(__dirname, `${process.env.NODE_ENV}.json`); })
+		.then((configPath) => { return fs.readFileAsync(configPath, {encoding: 'utf8'}); })
+		.then((configString) => { return JSON.parse(configString); })
 		.then((config) => {
 			this.config = config;
 

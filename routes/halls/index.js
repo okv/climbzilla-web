@@ -11,7 +11,7 @@ router.use('/:hallId(\\d+)/routes', routesRouter);
 
 router.get('/', (req, res, next) => {
 	Promise.resolve()
-		.then(() => climbzillaApiRequest.getHalls())
-		.then(halls => res.render('halls', {halls}))
-		.catch(err => next(err));
+		.then(() => { return climbzillaApiRequest.getHalls(); })
+		.then((halls) => { return res.render('halls', {halls}); })
+		.catch((err) => { return next(err); });
 });

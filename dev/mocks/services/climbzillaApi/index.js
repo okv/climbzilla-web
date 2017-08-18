@@ -10,10 +10,10 @@ const dataDir = pathUtils.join(__dirname, 'data');
 
 const sendFile = (fileName, callback) => {
 	return Promise.resolve()
-		.then(() => pathUtils.join(dataDir, fileName))
-		.then(filePath => fs.readFileAsync(filePath, {encoding: 'utf8'}))
-		.then(content => callback(null, {status: 200, body: content}))
-		.catch(err => callback(err));
+		.then(() => { return pathUtils.join(dataDir, fileName); })
+		.then((filePath) => { return fs.readFileAsync(filePath, {encoding: 'utf8'}); })
+		.then((content) => { return callback(null, {status: 200, body: content}); })
+		.catch((err) => { return callback(err); });
 };
 
 const server = mocky.createServer([{
