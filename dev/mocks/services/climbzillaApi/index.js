@@ -4,18 +4,40 @@ const pathUtils = require('path');
 const mocky = require('mocky');
 const Promise = require('bluebird');
 const debug = require('debug')('climbzilla-web:climbzilla-api-server-mock');
+const queryString = require('querystring');
 
 const dataDir = pathUtils.join(__dirname, 'data');
+
+const sendFile = (fileName, callback) => {
+	return Promise.resolve()
+		.then(() => pathUtils.join(dataDir, fileName))
+		.then(filePath => fs.readFileAsync(filePath, {encoding: 'utf8'}))
+		.then(content => callback(null, {status: 200, body: content}))
+		.catch(err => callback(err));
+};
 
 const server = mocky.createServer([{
 	url: '/v03/hall',
 	method: 'get',
 	res(req, res, callback) {
-		Promise.resolve()
-			.then(() => pathUtils.join(dataDir, 'halls.json'))
-			.then(filePath => fs.readFileAsync(filePath, {encoding: 'utf8'}))
-			.then(content => callback(null, {status: 200, body: content}))
-			.catch(err => callback(err));
+		sendFile('halls.json', callback);
+	}
+}, {
+	url: new RegExp('^/v03/top\\?hall_id=\\d+'),
+	method: 'get',
+	res(req, res, callback) {
+		const query = queryString.parse(req.url.split('?')[1]);
+
+		sendFile(`hall-${query.hall_id}-tops.json`, callback);
+	}
+}, {
+	url: new RegExp('^/v02/top/\\d+'),
+	method: 'get',
+	res(req, res, callback) {
+		const urlParts = req.url.split('/');
+		const topId = urlParts[urlParts.length - 1];
+
+		sendFile(`top-${topId}.json`, callback);
 	}
 }]);
 

@@ -6,4 +6,4 @@ block content
 	ul
 		each hall in halls
 			li 
-				a(href="/halls/" + hall.id + "/routes") #{hall.name}
+				a(href=`/halls/${hall.id}/routes`) #{hall.name}

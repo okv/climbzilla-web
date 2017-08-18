@@ -1,0 +1,9 @@
+extends layout
+
+block content
+	h1 Трассы
+
+	ul
+		each route in routes
+			li
+				a(href=`/halls/${hall.id}/routes/${route.id}`) #{route.title}

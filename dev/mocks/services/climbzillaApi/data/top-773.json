@@ -1,0 +1,32 @@
+{
+    "id": 773,
+    "hall_id": 6,
+    "user_id": 9,
+    "grade": 14,
+    "title": "Дремучий представитель",
+    "create_time": "2017-08-13 13:13:50",
+    "photos": [{
+        "id": 1415,
+        "top_id": 773,
+        "order": 0,
+        "url": "/s/tops/773/pdqbn1cl8d17cftqm.jpg",
+        "description": ""
+    }, {
+        "id": 1416,
+        "top_id": 773,
+        "order": 1,
+        "url": "/s/tops/773/a8l4tu82d36szuqs3.jpg",
+        "description": ""
+    }],
+    "author": {
+        "id": 9,
+        "vk_id": 13406661,
+        "create_time": "2017-07-04 11:29:08",
+        "full_name": "Ева Орлова",
+        "photo_200": "https://pp.userapi.com/c615828/v615828661/1055b/NaT4OqgDnvI.jpg"
+    },
+    "finishes_count": 0,
+    "finished_users": [],
+    "likes_count": 0,
+    "dislikes_count": 0
+}

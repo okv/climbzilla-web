@@ -16,3 +16,9 @@ const baseRequest = (path, options) => {
 };
 
 exports.getHalls = () => baseRequest('/v03/hall');
+
+exports.getRoutes = ({hallId}) => {
+	return baseRequest('/v03/top', {query: {hall_id: hallId}});
+};
+
+exports.getRoute = (routeId) => baseRequest(`/v02/top/${routeId}`);
