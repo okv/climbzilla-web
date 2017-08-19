@@ -31,7 +31,7 @@ const server = mocky.createServer([{
 		sendFile('halls.json', callback);
 	}
 }, {
-	url: new RegExp('^/v03/top\\?hall_id=\\d+'),
+	url: new RegExp('^/v02/top\\?hall_id=\\d+'),
 	method: 'get',
 	res(req, res, callback) {
 		const query = queryString.parse(req.url.split('?')[1]);

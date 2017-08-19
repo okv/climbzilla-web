@@ -1,0 +1,13 @@
+{
+	"listen": {
+		"host": "127.4.76.129",
+		"port": 8080
+	},
+	"services": {
+		"climbzillaApi": {
+			"host": "api.climbzilla.tk",
+			"port": 80,
+			"baseUrl": "http://api.climbzilla.tk"
+		}
+	}
+}

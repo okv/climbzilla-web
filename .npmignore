@@ -1,0 +1,13 @@
+dev
+.npmignore
+test
+*.tgz
+.travis.yml
+.nvmrc
+.npmrc
+*.log
+coverage
+.nyc_output
+.nycrc
+.eslintrc.json
+nodemon.json

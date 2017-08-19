@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 
+process.env.NODE_ENV = process.env.NODE_ENV || 'production';
+process.env.DEBUG = process.env.DEBUG || 'climbzilla-web:*';
+
 const app = require('../app');
 const debug = require('debug')('climbzilla-web:server');
 const http = require('http');

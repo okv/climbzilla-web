@@ -70,7 +70,7 @@ const makeRoute = (item, {baseUrl}) => {
 		hall: {id: item.hall_id},
 		grade: makeGrade(item.grade),
 		title: item.title,
-		author: makeUser(item.author),
+		author: item.author && makeUser(item.author),
 		photos: item.photos.map((photo) => {
 			return makePhoto(photo, {baseUrl});
 		})
@@ -113,7 +113,7 @@ exports.getHalls = () => {
 };
 
 exports.getRoutes = ({hallId}) => {
-	return baseRequest('/v03/top', {
+	return baseRequest('/v02/top', {
 		query: {hall_id: hallId},
 		transform: makeRoutes
 	});
