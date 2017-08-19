@@ -20,7 +20,7 @@ const makeUser = (item) => {
 	return {
 		id: item.id,
 		fullName: item.full_name,
-		avatar: item.photo_200
+		avatarUrl: item.photo_200
 	};
 };
 
@@ -32,11 +32,43 @@ const makePhoto = (item, {baseUrl}) => {
 	};
 };
 
+const gradeTitleHash = {
+	10: '5a',
+	11: '5a+',
+	12: '5b',
+	13: '5b+',
+	14: '5c',
+	15: '5c+',
+	16: '6a',
+	17: '6a+',
+	18: '6b',
+	19: '6b+',
+	20: '6c',
+	21: '6c+',
+	22: '7a',
+	23: '7a+',
+	24: '7b',
+	25: '7b+',
+	26: '7c',
+	27: '7c+',
+	28: '8a',
+	29: '8a+',
+	30: '8b',
+	31: '8b+',
+	32: '8c',
+	33: '8c+',
+	34: '9а'
+};
+
+const makeGrade = (numericGrade) => {
+	return {numeric: numericGrade, title: gradeTitleHash[numericGrade]};
+};
+
 const makeRoute = (item, {baseUrl}) => {
 	return {
 		id: item.id,
 		hall: {id: item.hall_id},
-		grade: item.grade,
+		grade: makeGrade(item.grade),
 		title: item.title,
 		author: makeUser(item.author),
 		photos: item.photos.map((photo) => {
