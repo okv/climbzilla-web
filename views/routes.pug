@@ -3,7 +3,9 @@ extends layout
 block content
 	h1 Трассы
 
-	ul
-		each route in routes
-			li
+	each route in routes
+		div
+			span.h3.text-capitalize
 				a(href=`/halls/${hall.id}/routes/${route.id}`) #{route.title}
+			| 
+			smal.text-muted #{route.grade.title}

@@ -8,7 +8,7 @@ const makeHall = (item) => {
 		id: item.id,
 		name: item.name,
 		city: {name: item.city},
-		rotesCount: item.tops_count
+		routesCount: Number(item.tops_count)
 	};
 };
 

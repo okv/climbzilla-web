@@ -1,5 +1,6 @@
 const express = require('express');
 const Promise = require('bluebird');
+const _ = require('underscore');
 const climbzillaApiRequest = require('../../utils/request/climbzillaApi');
 const routesRouter = require('./routes');
 
@@ -14,8 +15,22 @@ router.get('/', (req, res, next) => {
 		.then(() => {
 			return climbzillaApiRequest.getHalls();
 		})
-		.then((halls) => {
-			return res.render('halls', {halls});
+		.then((allHalls) => {
+			const [halls, emptyHalls] = _(allHalls).partition((hall) => {
+				return hall.routesCount > 0;
+			});
+
+			const sortIteratee = (hall) => {
+				return `${hall.city.name}-${hall.name}`;
+			};
+
+			const sortedHalls = _(halls).sortBy(sortIteratee);
+			const sortedEmptyHalls = _(emptyHalls).sortBy(sortIteratee);
+
+			return res.render('halls', {
+				halls: sortedHalls,
+				emptyHalls: sortedEmptyHalls
+			});
 		})
 		.catch((err) => {
 			return next(err);

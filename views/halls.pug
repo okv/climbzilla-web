@@ -3,7 +3,19 @@ extends layout
 block content
 	h1 Скалодромы
 
-	ul
-		each hall in halls
-			li 
+	each hall in halls
+		div
+			span.h3
 				a(href=`/halls/${hall.id}/routes`) #{hall.name}
+			| 
+			smal.text-muted #{hall.city.name}
+
+	hr
+
+	h2.text-muted Скалодромы без трасс
+
+	each emptyHall in emptyHalls
+		div
+			span.h3 #{emptyHall.name}
+			| 
+			smal #{emptyHall.city.name}

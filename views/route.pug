@@ -1,4 +1,16 @@
 extends layout
 
 block content
-	h1 #{route.title}
+	h1.text-capitalize
+		| #{route.title}
+		| 
+		small.text-muted #{route.grade.title}
+
+	.row
+		each photo in route.photos
+			.col-md-6
+				img.img-fluid(src=photo.url)
+
+				if photo.description
+					strong
+						.text-center #{photo.description}
