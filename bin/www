@@ -4,27 +4,28 @@ const app = require('../app');
 const debug = require('debug')('climbzilla-web:server');
 const http = require('http');
 const Promise = require('bluebird');
-
 const configHolder = require('../config/holder');
 
 Promise.resolve()
-  .then(() => configHolder.get())
-  .then((config) => {
-    const {host, port} = config.listen;
+	.then(() => {
+		return configHolder.get();
+	})
+	.then((config) => {
+		const {host, port} = config.listen;
 
-    var server = http.createServer(app);
+		var server = http.createServer(app);
 
-    server.listen(port, host);
+		server.listen(port, host);
 
-    server.on('error', (err) => {
-      throw err;
-    });
+		server.on('error', (err) => {
+			throw err;
+		});
 
-    server.on('listening', () => {
-      debug('Listening on %s:%s', host, port);
-    });
-  })
-  .catch((err) => {
-    console.error(err.stack || err);
-    process.exit(1);
-  });
+		server.on('listening', () => {
+			debug('Listening on %s:%s', host, port);
+		});
+	})
+	.catch((err) => {
+		console.error(err.stack || err);
+		process.exit(1);
+	});

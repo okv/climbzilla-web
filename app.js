@@ -17,7 +17,9 @@ const hallsRouter = require('./routes/halls');
 const app = express();
 
 Promise.resolve()
-	.then(() => { return configHolder.get(); })
+	.then(() => {
+		return configHolder.get();
+	})
 	.then((config) => {
 		debug('Current configuration is %s', JSON.stringify(config, null, 4));
 

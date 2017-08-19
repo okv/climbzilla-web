@@ -11,16 +11,28 @@ router.get('/', (req, res, next) => {
 	const hall = {id: hallId};
 
 	Promise.resolve()
-		.then(() => { return climbzillaApiRequest.getRoutes({hallId}); })
-		.then((routes) => { return res.render('routes', {routes, hall}); })
-		.catch((err) => { return next(err); });
+		.then(() => {
+			return climbzillaApiRequest.getRoutes({hallId});
+		})
+		.then((routes) => {
+			return res.render('routes', {routes, hall});
+		})
+		.catch((err) => {
+			return next(err);
+		});
 });
 
 router.get('/:routeId(\\d+)', (req, res, next) => {
 	const routeId = Number(req.params.routeId);
 
 	Promise.resolve()
-		.then(() => { return climbzillaApiRequest.getRoute(routeId); })
-		.then((route) => { return res.render('route', {route}); })
-		.catch((err) => { return next(err); });
+		.then(() => {
+			return climbzillaApiRequest.getRoute(routeId);
+		})
+		.then((route) => {
+			return res.render('route', {route});
+		})
+		.catch((err) => {
+			return next(err);
+		});
 });
