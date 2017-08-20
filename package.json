@@ -1,6 +1,6 @@
 {
   "name": "climbzilla-web",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Simple web client for https://vk.com/climbzilla",
   "main": "index.js",
   "scripts": {
