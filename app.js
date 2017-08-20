@@ -4,6 +4,7 @@ const debug = require('debug')('climbzilla-web:app');
 // const favicon = require('serve-favicon');
 const logger = require('morgan');
 const Promise = require('bluebird');
+const moment = require('moment');
 
 // promisify everything
 Promise.promisifyAll(require('fs'));
@@ -37,6 +38,11 @@ Promise.resolve()
 		// view engine setup
 		app.set('views', path.join(__dirname, 'views'));
 		app.set('view engine', 'pug');
+
+		// view helpers
+		app.locals.formatDate = (date) => {
+			return moment(date).format('DD.MM.YYYY HH:mm:ss');
+		};
 
 		// uncomment after placing your favicon in /public
 		// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

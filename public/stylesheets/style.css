@@ -1,22 +1,26 @@
 body {
 	padding: 50px;
-	font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+	font: 24px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 @media only screen and (max-width: 1000px) {
 	body, .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
 		font-size: 180%;
 	}
+
+	.route-fields {
+		font-size: 150%;
+	}
 }
 
 .hall-item, .route-item {
-	padding-bottom: 5px;
 	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 .img-item {
-	padding-bottom: 20px;
 	padding-top: 20px;
+	padding-bottom: 20px;
 }
 
 a {

@@ -1,7 +1,12 @@
 const got = require('got');
 const Promise = require('bluebird');
 const _ = require('underscore');
+const moment = require('moment');
 const configHolder = require('../../config/holder');
+
+const makeDate = (item) => {
+	return moment(item, 'YYYY-MM-DD HH:mm:ss').valueOf();
+};
 
 const makeHall = (item) => {
 	return {
@@ -67,6 +72,7 @@ const makeGrade = (numericGrade) => {
 const makeRoute = (item, {baseUrl}) => {
 	return {
 		id: item.id,
+		createDate: makeDate(item.create_time),
 		hall: {id: item.hall_id},
 		grade: makeGrade(item.grade),
 		title: item.title,
