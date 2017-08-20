@@ -4,7 +4,7 @@ block content
 	h1 Скалодромы
 
 	each hall in halls
-		div
+		.hall-item
 			span.h3
 				a(href=`/halls/${hall.id}/routes`) #{hall.name}
 			| 
@@ -12,10 +12,10 @@ block content
 
 	hr
 
-	h2.text-muted Скалодромы без трасс
+	h2 Скалодромы без трасс
 
 	each emptyHall in emptyHalls
-		div
+		.list-item
 			span.h3 #{emptyHall.name}
 			| 
 			smal #{emptyHall.city.name}

@@ -4,7 +4,7 @@ block content
 	h1 Трассы
 
 	each route in routes
-		div
+		.route-item
 			span.h3.text-capitalize
 				a(href=`/halls/${hall.id}/routes/${route.id}`) #{route.title}
 			| 
