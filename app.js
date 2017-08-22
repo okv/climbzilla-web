@@ -24,10 +24,15 @@ Promise.resolve()
 	.then((config) => {
 		debug('Current configuration is %s', JSON.stringify(config, null, 4));
 
+		process.env.NODE_ENV = config.env;
+
 		if (config.mocks && config.mocks.services) {
 			if (config.mocks.services.climbzillaApi) {
 				// eslint-disable-next-line global-require
-				const climbzillaApiServer = require('./dev/mocks/services/climbzillaApi');
+				const climbzillaApiServer = require(
+					'./dev/mocks/services/climbzillaApi'
+				)();
+
 				climbzillaApiServer.listen(
 					config.services.climbzillaApi.port,
 					config.services.climbzillaApi.host
@@ -62,6 +67,8 @@ Promise.resolve()
 		// error handler
 		// eslint-disable-next-line no-unused-vars
 		app.use((err, req, res, next) => {
+			debug('Error occurred: ', err.stack || err);
+
 			// set locals, only providing error in development
 			res.locals.message = err.message;
 			res.locals.error = req.app.get('env') === 'development' ? err : {};
