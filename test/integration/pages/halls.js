@@ -61,12 +61,17 @@ describe('halls page', () => {
 			});
 	});
 
+	it('should have title', () => {
+		const text = $('title').text();
+		expect(text).equal('Скалодромы');
+	});
+
 	it('should have h1 halls header', () => {
 		const text = $('h1').text();
 		expect(text).equal('Скалодромы');
 	});
 
-	it('should render halls', () => {
+	it('should have halls list', () => {
 		const halls = $('#halls .hall-item').map(function mapHalls() {
 			const routesHref = $(this).find('.h3 a');
 			return {
@@ -84,7 +89,7 @@ describe('halls page', () => {
 		expect(text).equal('Скалодромы без трасс');
 	});
 
-	it('should render empty halls', () => {
+	it('should have empty halls list', () => {
 		const emptyHalls = $('#empty-halls .hall-item').map(function mapHalls() {
 			return {
 				name: $(this).find('.h3').text(),
