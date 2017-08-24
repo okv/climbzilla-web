@@ -61,6 +61,11 @@ describe('halls page', () => {
 			});
 	});
 
+	it('should have h1 halls header', () => {
+		const text = $('h1').text();
+		expect(text).equal('Скалодромы');
+	});
+
 	it('should render halls', () => {
 		const halls = $('#halls .hall-item').map(function mapHalls() {
 			const routesHref = $(this).find('.h3 a');
@@ -72,6 +77,11 @@ describe('halls page', () => {
 		}).get();
 
 		expect(halls).eql(expectedHalls);
+	});
+
+	it('should have h2 empty halls header', () => {
+		const text = $('h2').text();
+		expect(text).equal('Скалодромы без трасс');
 	});
 
 	it('should render empty halls', () => {
