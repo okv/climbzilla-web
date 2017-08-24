@@ -6,7 +6,7 @@ const configHolder = {};
 
 configHolder.get = function get() {
 	if (this.config) {
-		return this.config;
+		return Promise.resolve(this.config);
 	}
 
 	return Promise.resolve()
