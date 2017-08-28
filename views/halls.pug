@@ -14,13 +14,14 @@ block content
 				| 
 				small.text-muted #{hall.city.name}
 
-	hr
+	if emptyHalls.length
+		hr
 
-	h2 Скалодромы без трасс
+		h2 Скалодромы без трасс
 
-	#empty-halls
-		each emptyHall in emptyHalls
-			.hall-item
-				span.h3 #{emptyHall.name}
-				| 
-				small #{emptyHall.city.name}
+		#empty-halls
+			each emptyHall in emptyHalls
+				.hall-item
+					span.h3 #{emptyHall.name}
+					| 
+					small #{emptyHall.city.name}
