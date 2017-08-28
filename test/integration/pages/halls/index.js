@@ -72,7 +72,7 @@ describe('halls page', () => {
 	});
 
 	it('should have halls list', () => {
-		const halls = $('#halls .hall-item').map(function mapHalls() {
+		const pageHalls = $('#halls .hall-item').map(function mapHalls() {
 			const routesHref = $(this).find('.h3 a');
 			return {
 				name: routesHref.text(),
@@ -81,7 +81,7 @@ describe('halls page', () => {
 			};
 		}).get();
 
-		expect(halls).eql(expectedHalls);
+		expect(pageHalls).eql(expectedHalls);
 	});
 
 	it('should have h2 empty halls header', () => {
@@ -90,14 +90,16 @@ describe('halls page', () => {
 	});
 
 	it('should have empty halls list', () => {
-		const emptyHalls = $('#empty-halls .hall-item').map(function mapHalls() {
-			return {
-				name: $(this).find('.h3').text(),
-				city: {name: $(this).find('small').text()}
-			};
-		}).get();
+		const pageEmptyHalls = $('#empty-halls .hall-item').map(
+			function mapHalls() {
+				return {
+					name: $(this).find('.h3').text(),
+					city: {name: $(this).find('small').text()}
+				};
+			}
+		).get();
 
-		expect(emptyHalls).eql(expectedEmptyHalls);
+		expect(pageEmptyHalls).eql(expectedEmptyHalls);
 	});
 
 	after(() => {

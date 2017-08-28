@@ -1,11 +1,15 @@
 extends layout
 
+block prepend head
+	- const title = 'Трассы';
+
 block content
 	h1 Трассы
 
-	each route in routes
-		.route-item
-			span.h3.text-capitalize
-				a(href=`/halls/${hall.id}/routes/${route.id}`) #{route.title}
-			| 
-			smal.text-muted #{route.grade.title}
+	#routes
+		each route in routes
+			.route-item
+				span.h3.text-capitalize
+					a(href=`/halls/${hall.id}/routes/${route.id}`) #{route.title}
+				| 
+				small.text-muted #{route.grade.title}
