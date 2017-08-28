@@ -1,7 +1,7 @@
 const expect = require('expect.js');
 const tap = require('tap');
 const cheerio = require('cheerio');
-const helpers = require('../helpers');
+const helpers = require('../../helpers');
 
 tap.mochaGlobals();
 
