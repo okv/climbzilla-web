@@ -20,7 +20,7 @@ router.get('/', (req, res, next) => {
 				return `${route.grade.numeric}-${route.title.toLowerCase()}`;
 			});
 
-			return res.render('routes', {hall, routes: sortedRoutes});
+			return res.render('halls/routes/list', {hall, routes: sortedRoutes});
 		})
 		.catch((err) => {
 			return next(err);
@@ -35,7 +35,7 @@ router.get('/:routeId(\\d+)', (req, res, next) => {
 			return climbzillaApiRequest.getRoute(routeId);
 		})
 		.then((route) => {
-			return res.render('route', {route});
+			return res.render('halls/routes/view', {route});
 		})
 		.catch((err) => {
 			return next(err);

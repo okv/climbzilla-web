@@ -27,7 +27,7 @@ router.get('/', (req, res, next) => {
 			const sortedHalls = _(halls).sortBy(sortIteratee);
 			const sortedEmptyHalls = _(emptyHalls).sortBy(sortIteratee);
 
-			return res.render('halls', {
+			return res.render('halls/list', {
 				halls: sortedHalls,
 				emptyHalls: sortedEmptyHalls
 			});
