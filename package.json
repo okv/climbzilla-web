@@ -8,7 +8,7 @@
     "dev": "test -z $NODE_ENV && export NODE_ENV=development; DEBUG=climbzilla-web:* nodemon ./bin/www",
     "start": "node ./bin/www",
     "lint": "eslint ./",
-    "test": "NODE_ENV=developmentTest tap -Rspec test --bail"
+    "test": "NODE_ENV=developmentTest tap -Rspec --bail test"
   },
   "dependencies": {
     "bluebird": "3.5.0",
