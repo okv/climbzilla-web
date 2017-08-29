@@ -5,17 +5,18 @@ body {
 
 @media only screen and (max-width: 1000px) {
 	body, .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-		font-size: 180%;
+		font-size: 200%;
 	}
 
 	#route-fields {
 		font-size: 150%;
 	}
+
 }
 
 .hall-item, .route-item {
-	padding-top: 5px;
-	padding-bottom: 5px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 .img-item {
