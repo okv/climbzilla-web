@@ -8,6 +8,15 @@ body {
 		font-size: 200%;
 	}
 
+	.hall-item > small, .route-item > small {
+		font-size: 130%;
+	}
+
+	.hall-item, .route-item {
+		padding-top: 20px !important;
+		padding-bottom: 20px !important;
+	}
+
 	#route-fields {
 		font-size: 150%;
 	}
