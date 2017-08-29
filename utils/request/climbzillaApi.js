@@ -24,6 +24,7 @@ const makeHalls = (items) => {
 const makeUser = (item) => {
 	return {
 		id: item.id,
+		createDate: makeDate(item.create_time),
 		fullName: item.full_name,
 		avatarUrl: item.photo_200
 	};
@@ -79,7 +80,8 @@ const makeRoute = (item, {baseUrl}) => {
 		author: item.author && makeUser(item.author),
 		photos: item.photos.map((photo) => {
 			return makePhoto(photo, {baseUrl});
-		})
+		}),
+		finishedUsers: (item.finished_users || []).map(makeUser)
 	};
 };
 
