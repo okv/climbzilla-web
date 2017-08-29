@@ -8,7 +8,7 @@
     "dev": "test -z $NODE_ENV && export NODE_ENV=development; DEBUG=climbzilla-web:* nodemon ./bin/www",
     "start": "node ./bin/www",
     "lint": "eslint ./",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_ENV=developmentTest tap -Rspec --bail test"
   },
   "dependencies": {
     "bluebird": "3.5.0",
@@ -36,10 +36,13 @@
   },
   "homepage": "https://github.com/okv/climbzilla-web#readme",
   "devDependencies": {
+    "cheerio": "1.0.0-rc.2",
     "eslint": "4.4.1",
     "eslint-config-airbnb-base": "11.3.1",
     "eslint-plugin-import": "2.7.0",
+    "expect.js": "0.3.1",
     "mocky": "0.1.11",
-    "nodemon": "1.11.0"
+    "nodemon": "1.11.0",
+    "tap": "10.7.2"
   }
 }

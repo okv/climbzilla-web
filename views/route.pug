@@ -1,23 +1,27 @@
 extends layout
 
+block prepend head
+	- const title = `Трасса «${route.title}»`;
+
 block content
 	h1.text-capitalize
 		| #{route.title}
 		| 
 		small.text-muted #{route.grade.title}
 
-	.route-fields
+	#route-fields
 		if route.author
 			div
 				| Автор: #{route.author.fullName}
 		div
 			| Добавлена: #{formatDate(route.createDate)}
 
-	.row
-		each photo in route.photos
-			.col-md-12.col-lg-6.img-item
-				img.img-fluid(src=photo.url)
+	#route-photos
+		.row
+			each photo in route.photos
+				.col-md-12.col-lg-6.img-item.route-photo-item
+					img.img-fluid(src=photo.url)
 
-				if photo.description
-					strong
-						.text-center #{photo.description}
+					if photo.description
+						strong
+							.text-center #{photo.description}
