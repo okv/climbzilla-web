@@ -26,14 +26,14 @@ block content
 						strong
 							.text-center #{photo.description}
 
-	#route-finishedUsers
+	#route-finished-users
 		strong
 			| Трассу прошли:
-		each finishedUser in route.finishedUsers
-			.route-finishedUser-item
-				| -&nbsp;
-				span.route-finishedUser-item-fillName
-					| #{finishedUser.fullName}
-				| &nbsp;
-				span.route-finishedUser-item-createDate
-					| #{formatDate(finishedUser.createDate)}
+		ul
+			each finishedUser in route.finishedUsers
+				li
+					span.route-finished-user-item-full-name
+						| #{finishedUser.fullName}
+					| 
+					span.route-finished-user-item-create-date
+						| #{formatDate(finishedUser.createDate)}

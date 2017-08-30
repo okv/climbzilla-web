@@ -21,6 +21,10 @@ body {
 		font-size: 150%;
 	}
 
+	#route-finished-users {
+		font-size: 150%;
+	}
+
 }
 
 .hall-item, .route-item {

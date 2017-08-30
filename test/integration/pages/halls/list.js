@@ -77,8 +77,8 @@ describe('halls page', () => {
 			const routesHref = $(this).find('.h3 a');
 			return {
 				name: routesHref.text(),
-				city: {name: $(this).find('small.text-muted.cityName').text()},
-				routesCount: $(this).find('small.text-muted.routesCount').text(),
+				city: {name: $(this).find('small.text-muted.city-name').text()},
+				routesCount: $(this).find('small.text-muted.routes-count').text(),
 				routesUrl: routesHref.attr('href')
 			};
 		}).get();

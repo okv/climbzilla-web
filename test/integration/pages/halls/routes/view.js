@@ -137,11 +137,11 @@ describe('hall routes route page', () => {
 	});
 
 	it('should have finished users list', () => {
-		const finishedUsers = $('#route-finishedUsers .route-finishedUser-item').map(
+		const finishedUsers = $('#route-finished-users li').map(
 			function mapFinishedUsers() {
 				return {
-					full_name: $(this).find('.route-finishedUser-item-fillName').text(),
-					create_time: $(this).find('.route-finishedUser-item-createDate').text()
+					full_name: $(this).find('.route-finished-user-item-full-name').text(),
+					create_time: $(this).find('.route-finished-user-item-create-date').text()
 				};
 			}
 		).get();

@@ -13,9 +13,11 @@ block content
 					a(href=`/halls/${hall.id}/routes`) #{hall.name}
 				| 
 				div
-					small.text-muted.cityName #{hall.city.name}
-					small.text-muted &nbsp
-					small.text-muted.routesCount (#{hall.routesCount})
+					small.text-muted.city-name
+						| #{hall.city.name}
+					small.text-muted 
+					small.text-muted.routes-count
+						| (#{hall.routesCount})
 
 	if emptyHalls.length
 		hr
