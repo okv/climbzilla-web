@@ -25,3 +25,15 @@ block content
 					if photo.description
 						strong
 							.text-center #{photo.description}
+
+	#route-finishedUsers
+		strong
+			| Трассу прошли:
+		each finishedUser in route.finishedUsers
+			.route-finishedUser-item
+				| -&nbsp;
+				span.route-finishedUser-item-fillName
+					| #{finishedUser.fullName}
+				| &nbsp;
+				span.route-finishedUser-item-createDate
+					| #{formatDate(finishedUser.createDate)}

@@ -25,6 +25,7 @@ describe('halls page', () => {
 	const expectedHalls = [{
 		name: 'БФАиС',
 		city: {name: 'Белгород'},
+		routesCount: '(17)',
 		routesUrl: '/halls/6/routes'
 	}];
 
@@ -76,7 +77,8 @@ describe('halls page', () => {
 			const routesHref = $(this).find('.h3 a');
 			return {
 				name: routesHref.text(),
-				city: {name: $(this).find('small.text-muted').text()},
+				city: {name: $(this).find('small.text-muted.cityName').text()},
+				routesCount: $(this).find('small.text-muted.routesCount').text(),
 				routesUrl: routesHref.attr('href')
 			};
 		}).get();

@@ -12,7 +12,10 @@ block content
 				span.h3
 					a(href=`/halls/${hall.id}/routes`) #{hall.name}
 				| 
-				small.text-muted #{hall.city.name}
+				div
+					small.text-muted.cityName #{hall.city.name}
+					small.text-muted &nbsp
+					small.text-muted.routesCount (#{hall.routesCount})
 
 	if emptyHalls.length
 		hr
@@ -23,5 +26,6 @@ block content
 			each emptyHall in emptyHalls
 				.hall-item
 					span.h3 #{emptyHall.name}
-					| 
-					small #{emptyHall.city.name}
+					|
+					div
+						small.text-muted #{emptyHall.city.name}

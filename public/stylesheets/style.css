@@ -8,7 +8,7 @@ body {
 		font-size: 200%;
 	}
 
-	.hall-item > small, .route-item > small {
+	.hall-item > div > small, .route-item > small {
 		font-size: 130%;
 	}
 
