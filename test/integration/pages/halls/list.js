@@ -24,14 +24,13 @@ describe('halls page', () => {
 
 	const expectedHalls = [{
 		name: 'БФАиС',
-		city: {name: 'Белгород'},
-		routesCount: '(17)',
+		bottomText: 'Белгород (17)',
 		routesUrl: '/halls/6/routes'
 	}];
 
 	const expectedEmptyHalls = [{
 		name: 'Море возможностей',
-		city: {name: 'Иркутск'}
+		bottomText: 'Иркутск'
 	}];
 
 	let app;
@@ -75,10 +74,13 @@ describe('halls page', () => {
 	it('should have halls list', () => {
 		const pageHalls = $('#halls .hall-item').map(function mapHalls() {
 			const routesHref = $(this).find('.h3 a');
+			const bottomText = $(this)
+				.find('.hall-item-bottom-text')
+				.text()
+				.replace(/\n/g, '');
 			return {
 				name: routesHref.text(),
-				city: {name: $(this).find('small.text-muted.city-name').text()},
-				routesCount: $(this).find('small.text-muted.routes-count').text(),
+				bottomText,
 				routesUrl: routesHref.attr('href')
 			};
 		}).get();
@@ -96,7 +98,7 @@ describe('halls page', () => {
 			function mapHalls() {
 				return {
 					name: $(this).find('.h3').text(),
-					city: {name: $(this).find('small').text()}
+					bottomText: $(this).find('.hall-item-bottom-text').text()
 				};
 			}
 		).get();
