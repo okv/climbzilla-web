@@ -10,6 +10,7 @@ const moment = require('moment');
 Promise.promisifyAll(require('fs'));
 Promise.promisifyAll(require('path'));
 
+const packageJson = require('./package.json');
 const configHolder = require('./config/holder');
 
 const indexRouter = require('./routes/index');
@@ -45,6 +46,7 @@ Promise.resolve()
 		app.set('view engine', 'pug');
 
 		// view helpers
+		app.locals.appVersion = packageJson.version;
 		app.locals.formatDate = (date) => {
 			return moment(date).format('DD.MM.YYYY HH:mm:ss');
 		};
