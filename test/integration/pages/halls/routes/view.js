@@ -32,7 +32,23 @@ describe('hall routes route page', () => {
 			create_time: '2017-07-04 11:29:08',
 			full_name: 'Ева Орлова',
 			photo_200: 'https://pp.userapi.com/c615828/v615828661/1055b/NaT4OqgDnvI.jpg'
-		}
+		},
+		finished_users: [
+			{
+				id: 157,
+				vk_id: 700732,
+				create_time: '2017-08-14 13:17:34',
+				full_name: 'Лев Забудько',
+				photo_200: 'https://pp.userapi.com/c628419/v628419732/1a9d7/-HwvOny_iwc.jpg'
+			},
+			{
+				id: 9,
+				vk_id: 13406661,
+				create_time: '2017-08-15 13:17:34',
+				full_name: 'Ева Орлова',
+				photo_200: 'https://pp.userapi.com/c615828/v615828661/1055b/NaT4OqgDnvI.jpg'
+			}
+		]
 	};
 
 	const expectedRoute = {
@@ -46,7 +62,17 @@ describe('hall routes route page', () => {
 		}, {
 			url: 'http://api.climbzilla.tk/s/tops/773/a8l4tu82d36szuqs3.jpg',
 			description: 'описание к фотографии 2'
-		}]
+		}],
+		finishedUsers: [
+			{
+				full_name: 'Лев Забудько',
+				create_time: '14.08.2017 13:17:34'
+			},
+			{
+				full_name: 'Ева Орлова',
+				create_time: '15.08.2017 13:17:34'
+			}
+		]
 	};
 
 	let app;
@@ -108,6 +134,19 @@ describe('hall routes route page', () => {
 		).get();
 
 		expect(pagePhotos).eql(expectedRoute.photos);
+	});
+
+	it('should have finished users list', () => {
+		const finishedUsers = $('#route-finished-users li').map(
+			function mapFinishedUsers() {
+				return {
+					full_name: $(this).find('.route-finished-user-item-full-name').text(),
+					create_time: $(this).find('.route-finished-user-item-create-date').text()
+				};
+			}
+		).get();
+
+		expect(finishedUsers).eql(expectedRoute.finishedUsers);
 	});
 
 	after(() => {

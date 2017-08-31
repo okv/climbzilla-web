@@ -8,7 +8,7 @@ body {
 		font-size: 200%;
 	}
 
-	.hall-item > small, .route-item > small {
+	.hall-item > div > small, .route-item > small {
 		font-size: 130%;
 	}
 
@@ -18,6 +18,10 @@ body {
 	}
 
 	#route-fields {
+		font-size: 150%;
+	}
+
+	#route-finished-users {
 		font-size: 150%;
 	}
 
