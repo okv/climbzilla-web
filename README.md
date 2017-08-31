@@ -13,9 +13,13 @@
 
 [![Build Status](https://travis-ci.org/okv/climbzilla-web.svg?branch=master)](https://travis-ci.org/okv/climbzilla-web)
 
+Онлайн демо версия доступна [здесь](http://climbzillaweb-ncidemo.rhcloud.com).
+
+
 ## Требования
 
 * Node.js >= 6
+
 
 ## Установка и запуск
 
