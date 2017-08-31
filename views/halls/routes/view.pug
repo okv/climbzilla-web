@@ -26,14 +26,15 @@ block content
 						strong
 							.text-center #{photo.description}
 
-	#route-finished-users
-		strong
-			| Трассу прошли:
-		ul(style="margin-top: 10px;")
-			each finishedUser in route.finishedUsers
-				li
-					span.route-finished-user-item-full-name
-						| #{finishedUser.fullName}
-					| 
-					small.text-muted.route-finished-user-item-create-date
-						| #{formatDate(finishedUser.createDate)}
+	if route.finishedUsers.length
+		#route-finished-users
+			strong
+				| Трассу прошли:
+			ul(style="margin-top: 10px;")
+				each finishedUser in route.finishedUsers
+					li
+						span.route-finished-user-item-full-name
+							| #{finishedUser.fullName}
+						| 
+						small.text-muted.route-finished-user-item-create-date
+							| #{formatDate(finishedUser.createDate)}
