@@ -63,16 +63,13 @@ describe('hall routes route page', () => {
 			url: 'http://api.climbzilla.tk/s/tops/773/a8l4tu82d36szuqs3.jpg',
 			description: 'описание к фотографии 2'
 		}],
-		finishedUsers: [
-			{
-				full_name: 'Лев Забудько',
-				create_time: '14.08.2017 13:17:34'
-			},
-			{
-				full_name: 'Ева Орлова',
-				create_time: '15.08.2017 13:17:34'
-			}
-		]
+		finishedUsers: [{
+			fullName: 'Лев Забудько',
+			createDateString: '14.08.2017 13:17:34'
+		}, {
+			fullName: 'Ева Орлова',
+			createDateString: '15.08.2017 13:17:34'
+		}]
 	};
 
 	let app;
@@ -140,8 +137,12 @@ describe('hall routes route page', () => {
 		const finishedUsers = $('#route-finished-users li').map(
 			function mapFinishedUsers() {
 				return {
-					full_name: $(this).find('.route-finished-user-item-full-name').text(),
-					create_time: $(this).find('.route-finished-user-item-create-date').text()
+					fullName: (
+						$(this).find('.route-finished-user-item-full-name').text()
+					),
+					createDateString: (
+						$(this).find('.route-finished-user-item-create-date').text()
+					)
 				};
 			}
 		).get();

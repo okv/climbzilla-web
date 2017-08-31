@@ -29,11 +29,11 @@ block content
 	#route-finished-users
 		strong
 			| Трассу прошли:
-		ul
+		ul(style="margin-top: 10px;")
 			each finishedUser in route.finishedUsers
 				li
 					span.route-finished-user-item-full-name
 						| #{finishedUser.fullName}
 					| 
-					span.route-finished-user-item-create-date
+					small.text-muted.route-finished-user-item-create-date
 						| #{formatDate(finishedUser.createDate)}
