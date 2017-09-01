@@ -11,9 +11,9 @@
 * просмотр списка трасс на скалодроме
 * просмотр конкретной трассы
 
-[![Build Status](https://travis-ci.org/okv/climbzilla-web.svg?branch=master)](https://travis-ci.org/okv/climbzilla-web)
+Онлайн демо версия доступна [здесь](http://climbzillaweb-ncidemo.rhcloud.com), production версия [web.climbzilla.tk](http://web.climbzilla.tk).
 
-Онлайн демо версия доступна [здесь](http://climbzillaweb-ncidemo.rhcloud.com).
+[![Build Status](https://travis-ci.org/okv/climbzilla-web.svg?branch=master)](https://travis-ci.org/okv/climbzilla-web)
 
 
 ## Требования
