@@ -15,7 +15,7 @@ const serverRequest = (path, options) => {
 		});
 };
 
-const createApp = ({apiServerMockParams}) => {
+const createApp = ({apiServerMockParams} = {}) => {
 	const appWithServices = {};
 	const server = http.createServer(app);
 	const apiServerMock = createApiServerMock(apiServerMockParams);
