@@ -58,7 +58,7 @@ NODE_CONFIG=/var/tmp/climbzilla-web-deploy/config.json /var/tmp/climbzilla-web-d
 После этого приложение доступно на ```http://127.0.0.1:8080```.
 
 Для запуска приложения в фоне можно использовать любой supervisor для Node.js
-приложений, например forever:
+приложений, например [forever](https://github.com/foreverjs/forever):
 
 ```
 npm install forever &&
