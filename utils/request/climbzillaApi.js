@@ -8,12 +8,17 @@ const makeDate = (item) => {
 	return moment(item, 'YYYY-MM-DD HH:mm:ss').valueOf();
 };
 
-const makeHall = (item) => {
+const makeHall = (item, hallId) => {
+	if (item) {
+		return {
+			id: item.id,
+			name: item.name,
+			city: {name: item.city},
+			routesCount: Number(item.tops_count)
+		};
+	}
 	return {
-		id: item.id,
-		name: item.name,
-		city: {name: item.city},
-		routesCount: Number(item.tops_count)
+		id: hallId
 	};
 };
 
@@ -74,7 +79,7 @@ const makeRoute = (item, {baseUrl}) => {
 	return {
 		id: item.id,
 		createDate: makeDate(item.create_time),
-		hall: {id: item.hall_id},
+		hall: makeHall(item.hall, item.hall_id),
 		grade: makeGrade(item.grade),
 		title: item.title,
 		author: item.author && makeUser(item.author),
@@ -128,5 +133,8 @@ exports.getRoutes = ({hallId}) => {
 };
 
 exports.getRoute = (routeId) => {
-	return baseRequest(`/v02/top/${routeId}`, {transform: makeRoute});
+	return baseRequest(`/v02/top/${routeId}`, {
+		query: {expand: 'hall'},
+		transform: makeRoute
+	});
 };

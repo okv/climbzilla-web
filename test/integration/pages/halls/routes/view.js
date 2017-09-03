@@ -48,7 +48,15 @@ describe('hall routes route page', () => {
 				full_name: 'Ева Орлова',
 				photo_200: 'https://pp.userapi.com/c615828/v615828661/1055b/NaT4OqgDnvI.jpg'
 			}
-		]
+		],
+		hall: {
+			id: '6',
+			name: 'БФАиС',
+			city: 'Белгород',
+			user_id: '1',
+			create_time: '2017-03-11 16:36:30',
+			tops_count: '17'
+		}
 	};
 
 	const expectedRoute = {
@@ -69,7 +77,12 @@ describe('hall routes route page', () => {
 		}, {
 			fullName: 'Ева Орлова',
 			createDateString: '15.08.2017 13:17:34'
-		}]
+		}],
+		hall: {
+			id: 6,
+			name: 'БФАиС',
+			routesUrl: '/halls/6/routes'
+		}
 	};
 
 	let app;
