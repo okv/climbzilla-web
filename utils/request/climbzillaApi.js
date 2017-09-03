@@ -129,7 +129,7 @@ exports.getRoutes = ({hallId}) => {
 
 exports.getRoute = (routeId) => {
 	return baseRequest(`/v02/top/${routeId}`, {
-		query: {expand: "hall"},
+		query: {expand: 'hall'},
 		transform: makeRoute
 	});
 };

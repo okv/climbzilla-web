@@ -31,7 +31,9 @@ const getRoutesDefault = (req) => {
 
 const getRouteDefault = (req) => {
 	const urlParts = req.url.split('/');
-	const topId = urlParts[urlParts.length - 1];
+	const topIdWithParams = urlParts[urlParts.length - 1];
+	const topIdParts = topIdWithParams.split('?');
+	const topId = topIdParts[0];
 
 	return getFile(`top-${topId}.json`);
 };

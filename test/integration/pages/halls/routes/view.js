@@ -78,11 +78,13 @@ describe('hall routes route page', () => {
 			fullName: 'Ева Орлова',
 			createDateString: '15.08.2017 13:17:34'
 		}],
-		hall: {
-			id: 6,
+		breadcrumbs: [{
+			name: 'Скалодромы',
+			url: '/halls'
+		}, {
 			name: 'БФАиС',
-			routesUrl: '/halls/6/routes'
-		}
+			url: '/halls/6/routes'
+		}]
 	};
 
 	let app;
@@ -113,6 +115,19 @@ describe('hall routes route page', () => {
 			});
 	});
 
+	it('should have breadcrumbs', () => {
+		const pageBreadcrumbs = $('.breadcrumb .breadcrumb-item').map(
+			function mapBreadcrumbs() {
+				return {
+					name: $(this).find('a').text(),
+					url: $(this).find('a').attr('href')
+				};
+			}
+		).get();
+
+		expect(pageBreadcrumbs).eql(expectedRoute.breadcrumbs);
+	});
+
 	it('should have title', () => {
 		const text = $('title').text();
 		expect(text).equal(`Трасса «${expectedRoute.title}»`);
@@ -131,6 +146,11 @@ describe('hall routes route page', () => {
 	it('should have create date field', () => {
 		const text = $('#route-fields div:nth-child(2)').text();
 		expect(text).equal(`Добавлена: ${expectedRoute.createDateString}`);
+	});
+
+	it('should have photos count', () => {
+		const text = $('#route-photos .route-photos-count').text();
+		expect(text).equal(`Фотографий: ${expectedRoute.photos.length}`);
 	});
 
 	it('should have photos list', () => {
