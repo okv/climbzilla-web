@@ -9,17 +9,15 @@ module.exports = router;
 
 router.get('/', (req, res, next) => {
 	const hallId = Number(req.params.hallId);
-	let hall = {id: hallId};
 
 	Promise.resolve()
 		.then(() => {
-			return climbzillaApiRequest.getHall(hallId);
+			return Promise.join(
+				climbzillaApiRequest.getHall(hallId),
+				climbzillaApiRequest.getRoutes({hallId})
+			);
 		})
-		.then((gotHall) => {
-			hall = gotHall;
-			return climbzillaApiRequest.getRoutes({hallId});
-		})
-		.then((routes) => {
+		.then(([hall, routes]) => {
 			const sortedRoutes = _(routes).sortBy((route) => {
 				return `${route.grade.numeric}-${route.title.toLowerCase()}`;
 			});
