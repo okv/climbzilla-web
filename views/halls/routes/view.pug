@@ -3,6 +3,10 @@ extends ../../layout
 block prepend head
 	- const title = `Трасса «${route.title}»`;
 
+block append script
+	script
+		include ../../../public/javascripts/pages/halls/routes/view.js
+
 block content
 	h1.text-capitalize
 		| #{route.title}
@@ -18,9 +22,16 @@ block content
 
 	#route-photos
 		.row
-			each photo in route.photos
+			each photo, index in route.photos
 				.col-md-12.col-lg-6.img-item.route-photo-item
-					img.img-fluid(src=photo.url)
+					- const loaderId = 'route-photo-loader-' + index;
+					.route-photo-loader.loader.text-center(id= loaderId)
+
+					img.img-fluid.route-photo(
+						src=photo.url,
+						style="display: none;",
+						data-loader-selector='#' + loaderId
+					)
 
 					if photo.description
 						strong
