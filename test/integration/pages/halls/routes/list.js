@@ -29,6 +29,13 @@ describe('hall routes page', () => {
 		routeUrl: '/halls/6/routes/773'
 	}];
 
+	const expectedBreadcrumbs = [{
+		name: 'Скалодромы',
+		url: '/halls'
+	}, {
+		name: 'БФАиС'
+	}];
+
 	let app;
 
 	before(() => {
@@ -55,6 +62,25 @@ describe('hall routes page', () => {
 
 				$ = cheerio.load(res.body);
 			});
+	});
+
+	it('should have breadcrumbs', () => {
+		const pageBreadcrumbs = $('.breadcrumb .breadcrumb-item:not(.active)').map(
+			function mapBreadcrumbs() {
+				return {
+					name: $(this).find('a').text(),
+					url: $(this).find('a').attr('href')
+				};
+			}
+		).get();
+
+		pageBreadcrumbs.push(
+			{
+				name: $('.breadcrumb .breadcrumb-item.active').text()
+			}
+		);
+
+		expect(pageBreadcrumbs).eql(expectedBreadcrumbs);
 	});
 
 	it('should have title', () => {

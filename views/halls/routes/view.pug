@@ -4,6 +4,15 @@ block prepend head
 	- const title = `Трасса «${route.title}»`;
 
 block content
+
+	ul.breadcrumb
+		li.breadcrumb-item
+			a(href=`/halls`) Скалодромы
+		li.breadcrumb-item
+			a(href=`/halls/${route.hall.id}/routes`) #{route.hall.name}
+		li.breadcrumb-item.active
+			| #{route.title}
+
 	h1.text-capitalize
 		| #{route.title}
 		| 

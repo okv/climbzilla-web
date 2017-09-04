@@ -43,5 +43,13 @@
 		}
 	],
 	"likes_count": 0,
-	"dislikes_count": 0
+	"dislikes_count": 0,
+	"hall": {
+		"id": "6",
+		"name": "БФАиС",
+		"city": "Белгород",
+		"user_id": "1",
+		"create_time": "2017-03-11 16:36:30",
+		"tops_count": "17"
+	}
 }
