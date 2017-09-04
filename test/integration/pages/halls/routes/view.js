@@ -84,6 +84,8 @@ describe('hall routes route page', () => {
 		}, {
 			name: 'БФАиС',
 			url: '/halls/6/routes'
+		}, {
+			name: 'Дремучий представитель'
 		}]
 	};
 
@@ -116,7 +118,7 @@ describe('hall routes route page', () => {
 	});
 
 	it('should have breadcrumbs', () => {
-		const pageBreadcrumbs = $('.breadcrumb .breadcrumb-item').map(
+		const pageBreadcrumbs = $('.breadcrumb .breadcrumb-item:not(.active)').map(
 			function mapBreadcrumbs() {
 				return {
 					name: $(this).find('a').text(),
@@ -124,6 +126,12 @@ describe('hall routes route page', () => {
 				};
 			}
 		).get();
+
+		pageBreadcrumbs.push(
+			{
+				name: $('.breadcrumb .breadcrumb-item.active').text()
+			}
+		);
 
 		expect(pageBreadcrumbs).eql(expectedRoute.breadcrumbs);
 	});
@@ -146,11 +154,6 @@ describe('hall routes route page', () => {
 	it('should have create date field', () => {
 		const text = $('#route-fields div:nth-child(2)').text();
 		expect(text).equal(`Добавлена: ${expectedRoute.createDateString}`);
-	});
-
-	it('should have photos count', () => {
-		const text = $('#route-photos .route-photos-count').text();
-		expect(text).equal(`Фотографий: ${expectedRoute.photos.length}`);
 	});
 
 	it('should have photos list', () => {

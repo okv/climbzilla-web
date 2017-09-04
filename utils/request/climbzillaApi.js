@@ -120,6 +120,12 @@ exports.getHalls = () => {
 	return baseRequest('/v03/hall', {transform: makeHalls});
 };
 
+exports.getHall = (hallId) => {
+	return baseRequest(`/v03/hall/${hallId}`, {
+		transform: makeHall
+	});
+};
+
 exports.getRoutes = ({hallId}) => {
 	return baseRequest('/v02/top', {
 		query: {hall_id: hallId},

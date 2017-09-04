@@ -23,6 +23,13 @@ const getHallsDefault = () => {
 	return getFile('halls.json');
 };
 
+const getHallDefault = (req) => {
+	const urlParts = req.url.split('/');
+	const hallId = urlParts[urlParts.length - 1];
+
+	return getFile(`hall-${hallId}.json`);
+};
+
 const getRoutesDefault = (req) => {
 	const query = queryString.parse(req.url.split('?')[1]);
 
@@ -38,8 +45,9 @@ const getRouteDefault = (req) => {
 	return getFile(`top-${topId}.json`);
 };
 
-const createServer = ({getHalls, getRoutes, getRoute} = {}) => {
+const createServer = ({getHalls, getHall, getRoutes, getRoute} = {}) => {
 	const hallsGetter = getHalls || getHallsDefault;
+	const hallGetter = getHall || getHallDefault;
 	const routesGetter = getRoutes || getRoutesDefault;
 	const routeGetter = getRoute || getRouteDefault;
 
@@ -53,6 +61,23 @@ const createServer = ({getHalls, getRoutes, getRoute} = {}) => {
 				})
 				.then((halls) => {
 					const body = _(halls).isString() ? halls : JSON.stringify(halls);
+
+					callback(null, {status: 200, body});
+				})
+				.catch((err) => {
+					callback(err);
+				});
+		}
+	}, {
+		url: new RegExp('^/v03/hall/\\d+'),
+		method: 'get',
+		res(req, res, callback) {
+			Promise.resolve()
+				.then(() => {
+					return hallGetter(req, res);
+				})
+				.then((hall) => {
+					const body = _(hall).isString() ? hall : JSON.stringify(hall);
 
 					callback(null, {status: 200, body});
 				})

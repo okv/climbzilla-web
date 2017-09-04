@@ -10,6 +10,8 @@ block content
 			a(href=`/halls`) Скалодромы
 		li.breadcrumb-item
 			a(href=`/halls/${route.hall.id}/routes`) #{route.hall.name}
+		li.breadcrumb-item.active
+			| #{route.title}
 
 	h1.text-capitalize
 		| #{route.title}
@@ -24,7 +26,6 @@ block content
 			| Добавлена: #{formatDate(route.createDate)}
 
 	#route-photos
-		.route-photos-count Фотографий: #{route.photos.length}
 		.row
 			each photo in route.photos
 				.col-md-12.col-lg-6.img-item.route-photo-item

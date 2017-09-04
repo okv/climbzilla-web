@@ -9,10 +9,14 @@ module.exports = router;
 
 router.get('/', (req, res, next) => {
 	const hallId = Number(req.params.hallId);
-	const hall = {id: hallId};
+	let hall = {id: hallId};
 
 	Promise.resolve()
 		.then(() => {
+			return climbzillaApiRequest.getHall(hallId);
+		})
+		.then((gotHall) => {
+			hall = gotHall;
 			return climbzillaApiRequest.getRoutes({hallId});
 		})
 		.then((routes) => {
