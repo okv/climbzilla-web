@@ -30,10 +30,10 @@ describe('hall routes page', () => {
 	}];
 
 	const expectedBreadcrumbs = [{
-		name: 'Скалодромы',
+		title: 'Скалодромы',
 		url: '/halls'
 	}, {
-		name: 'БФАиС'
+		title: 'БФАиС'
 	}];
 
 	let app;
@@ -68,7 +68,7 @@ describe('hall routes page', () => {
 		const pageBreadcrumbs = $('.breadcrumb .breadcrumb-item:not(.active)').map(
 			function mapBreadcrumbs() {
 				return {
-					name: $(this).find('a').text(),
+					title: $(this).find('a').text(),
 					url: $(this).find('a').attr('href')
 				};
 			}
@@ -76,7 +76,7 @@ describe('hall routes page', () => {
 
 		pageBreadcrumbs.push(
 			{
-				name: $('.breadcrumb .breadcrumb-item.active').text()
+				title: $('.breadcrumb .breadcrumb-item.active').text()
 			}
 		);
 

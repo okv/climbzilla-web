@@ -77,17 +77,19 @@ describe('hall routes route page', () => {
 		}, {
 			fullName: 'Ева Орлова',
 			createDateString: '15.08.2017 13:17:34'
-		}],
-		breadcrumbs: [{
-			name: 'Скалодромы',
-			url: '/halls'
-		}, {
-			name: 'БФАиС',
-			url: '/halls/6/routes'
-		}, {
-			name: 'Дремучий представитель'
 		}]
 	};
+
+	const expectedBreadcrumbs = [{
+		title: 'Скалодромы',
+		url: '/halls'
+	}, {
+		title: 'БФАиС',
+		url: '/halls/6/routes'
+	}, {
+		title: 'Дремучий представитель'
+	}];
+
 
 	let app;
 
@@ -121,7 +123,7 @@ describe('hall routes route page', () => {
 		const pageBreadcrumbs = $('.breadcrumb .breadcrumb-item:not(.active)').map(
 			function mapBreadcrumbs() {
 				return {
-					name: $(this).find('a').text(),
+					title: $(this).find('a').text(),
 					url: $(this).find('a').attr('href')
 				};
 			}
@@ -129,11 +131,11 @@ describe('hall routes route page', () => {
 
 		pageBreadcrumbs.push(
 			{
-				name: $('.breadcrumb .breadcrumb-item.active').text()
+				title: $('.breadcrumb .breadcrumb-item.active').text()
 			}
 		);
 
-		expect(pageBreadcrumbs).eql(expectedRoute.breadcrumbs);
+		expect(pageBreadcrumbs).eql(expectedBreadcrumbs);
 	});
 
 	it('should have title', () => {
