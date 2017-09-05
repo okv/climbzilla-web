@@ -52,14 +52,19 @@ a {
 	font-size: 15px;
 }
 
+.route-photo-loader {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
 .loader {
-	border: 16px solid #f3f3f3;
+	border: 5px solid #f3f3f3;
+	-webkit-animation: spin 1s linear infinite;
+	animation: spin 1s linear infinite;
+	border-top: 5px solid #555;
 	border-radius: 50%;
-	border-top: 16px solid #3498db;
-	width: 120px;
-	height: 120px;
-	-webkit-animation: spin 2s linear infinite;
-	animation: spin 2s linear infinite;
+	width: 50px;
+	height: 50px;
 }
 
 @-webkit-keyframes spin {

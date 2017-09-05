@@ -30,8 +30,11 @@ block content
 		.row
 			each photo, index in route.photos
 				.col-md-12.col-lg-6.img-item.route-photo-item
-					- const loaderId = 'route-photo-loader-' + index;
-					.route-photo-loader.loader.text-center(id= loaderId)
+
+					.row
+						.offset-sm-5.col-sm-1
+							- const loaderId = 'route-photo-loader-' + index;
+							.route-photo-loader.loader.text-center(id= loaderId)
 
 					img.img-fluid.route-photo(
 						src=photo.url,
