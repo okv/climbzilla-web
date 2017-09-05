@@ -11,7 +11,8 @@ block content
 		li.breadcrumb-item
 			a(href=`/halls/${route.hall.id}/routes`) #{route.hall.name}
 		li.breadcrumb-item.active
-			| #{route.title} 
+			span.text-capitalize #{route.title}
+			| 
 			small.text-muted #{route.grade.title}
 
 	#route-fields
