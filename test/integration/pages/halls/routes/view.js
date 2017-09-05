@@ -48,7 +48,15 @@ describe('hall routes route page', () => {
 				full_name: 'Ева Орлова',
 				photo_200: 'https://pp.userapi.com/c615828/v615828661/1055b/NaT4OqgDnvI.jpg'
 			}
-		]
+		],
+		hall: {
+			id: '6',
+			name: 'БФАиС',
+			city: 'Белгород',
+			user_id: '1',
+			create_time: '2017-03-11 16:36:30',
+			tops_count: '17'
+		}
 	};
 
 	const expectedRoute = {
@@ -71,6 +79,17 @@ describe('hall routes route page', () => {
 			createDateString: '15.08.2017 13:17:34'
 		}]
 	};
+
+	const expectedBreadcrumbs = [{
+		title: 'Скалодромы',
+		url: '/halls'
+	}, {
+		title: 'БФАиС',
+		url: '/halls/6/routes'
+	}, {
+		title: 'Дремучий представитель 5c'
+	}];
+
 
 	let app;
 
@@ -100,14 +119,28 @@ describe('hall routes route page', () => {
 			});
 	});
 
+	it('should have breadcrumbs', () => {
+		const pageBreadcrumbs = $('.breadcrumb .breadcrumb-item:not(.active)').map(
+			function mapBreadcrumbs() {
+				return {
+					title: $(this).find('a').text(),
+					url: $(this).find('a').attr('href')
+				};
+			}
+		).get();
+
+		pageBreadcrumbs.push(
+			{
+				title: $('.breadcrumb .breadcrumb-item.active').text()
+			}
+		);
+
+		expect(pageBreadcrumbs).eql(expectedBreadcrumbs);
+	});
+
 	it('should have title', () => {
 		const text = $('title').text();
 		expect(text).equal(`Трасса «${expectedRoute.title}»`);
-	});
-
-	it('should have h1 header', () => {
-		const text = $('h1').text().replace(/\n/g, '');
-		expect(text).equal(`${expectedRoute.title} ${expectedRoute.grade.title}`);
 	});
 
 	it('should have author field', () => {

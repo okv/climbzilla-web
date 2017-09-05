@@ -4,6 +4,13 @@ block prepend head
 	- const title = 'Трассы';
 
 block content
+
+	ul.breadcrumb
+		li.breadcrumb-item
+			a(href=`/halls`) Скалодромы
+		li.breadcrumb-item.active
+			| #{hall.name}
+
 	h1 Трассы
 
 	#routes

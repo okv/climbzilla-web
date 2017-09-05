@@ -8,10 +8,16 @@ block append script
 		include ../../../public/javascripts/pages/halls/routes/view.js
 
 block content
-	h1.text-capitalize
-		| #{route.title}
-		| 
-		small.text-muted #{route.grade.title}
+
+	ul.breadcrumb
+		li.breadcrumb-item
+			a(href=`/halls`) Скалодромы
+		li.breadcrumb-item
+			a(href=`/halls/${route.hall.id}/routes`) #{route.hall.name}
+		li.breadcrumb-item.active
+			span.text-capitalize #{route.title}
+			| 
+			small.text-muted #{route.grade.title}
 
 	#route-fields
 		if route.author

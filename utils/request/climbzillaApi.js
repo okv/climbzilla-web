@@ -74,7 +74,7 @@ const makeRoute = (item, {baseUrl}) => {
 	return {
 		id: item.id,
 		createDate: makeDate(item.create_time),
-		hall: {id: item.hall_id},
+		hall: makeHall(item.hall || {id: item.hall_id}),
 		grade: makeGrade(item.grade),
 		title: item.title,
 		author: item.author && makeUser(item.author),
@@ -120,6 +120,12 @@ exports.getHalls = () => {
 	return baseRequest('/v03/hall', {transform: makeHalls});
 };
 
+exports.getHall = (hallId) => {
+	return baseRequest(`/v03/hall/${hallId}`, {
+		transform: makeHall
+	});
+};
+
 exports.getRoutes = ({hallId}) => {
 	return baseRequest('/v02/top', {
 		query: {hall_id: hallId},
@@ -128,5 +134,8 @@ exports.getRoutes = ({hallId}) => {
 };
 
 exports.getRoute = (routeId) => {
-	return baseRequest(`/v02/top/${routeId}`, {transform: makeRoute});
+	return baseRequest(`/v02/top/${routeId}`, {
+		query: {expand: 'hall'},
+		transform: makeRoute
+	});
 };
