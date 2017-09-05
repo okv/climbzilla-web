@@ -29,6 +29,9 @@ body {
 		font-size: 180%;
 	}
 
+	.footer {
+		font-size: 110% !important;
+	}
 }
 
 .hall-item, .route-item {
