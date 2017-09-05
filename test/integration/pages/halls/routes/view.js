@@ -87,7 +87,7 @@ describe('hall routes route page', () => {
 		title: 'БФАиС',
 		url: '/halls/6/routes'
 	}, {
-		title: 'Дремучий представитель'
+		title: 'Дремучий представитель 5c'
 	}];
 
 
@@ -141,11 +141,6 @@ describe('hall routes route page', () => {
 	it('should have title', () => {
 		const text = $('title').text();
 		expect(text).equal(`Трасса «${expectedRoute.title}»`);
-	});
-
-	it('should have h1 header', () => {
-		const text = $('h1').text().replace(/\n/g, '');
-		expect(text).equal(`${expectedRoute.title} ${expectedRoute.grade.title}`);
 	});
 
 	it('should have author field', () => {

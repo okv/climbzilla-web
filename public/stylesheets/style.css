@@ -25,6 +25,10 @@ body {
 		font-size: 150%;
 	}
 
+	.breadcrumb {
+		font-size: 180%;
+	}
+
 }
 
 .hall-item, .route-item {
