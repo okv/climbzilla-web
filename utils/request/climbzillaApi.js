@@ -30,6 +30,13 @@ const makeUser = (item) => {
 	};
 };
 
+const makeFinish = (item) => {
+	return {
+		createDate: makeDate(item.create_time),
+		user: makeUser(item.user)
+	};
+};
+
 const makePhoto = (item, {baseUrl}) => {
 	return {
 		id: item.id,
@@ -81,7 +88,7 @@ const makeRoute = (item, {baseUrl}) => {
 		photos: item.photos.map((photo) => {
 			return makePhoto(photo, {baseUrl});
 		}),
-		finishedUsers: (item.finished_users || []).map(makeUser)
+		finishes: (item.finishes || []).map(makeFinish)
 	};
 };
 

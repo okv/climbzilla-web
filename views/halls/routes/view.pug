@@ -46,15 +46,15 @@ block content
 						strong
 							.text-center #{photo.description}
 
-	if route.finishedUsers.length
+	if route.finishes.length
 		#route-finished-users
 			strong
 				| Трассу прошли:
 			ul(style="margin-top: 10px;")
-				each finishedUser in route.finishedUsers
+				each finish in route.finishes
 					li
 						span.route-finished-user-item-full-name
-							| #{finishedUser.fullName}
+							| #{finish.user.fullName}
 						| 
 						small.text-muted.route-finished-user-item-create-date
-							| #{formatDate(finishedUser.createDate)}
+							| #{formatDate(finish.createDate)}
