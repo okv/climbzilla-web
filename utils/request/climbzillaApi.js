@@ -21,19 +21,19 @@ const makeHalls = (items) => {
 	return items.map(makeHall);
 };
 
-const makeFinish = (item) => {
-	return {
-		createDate: makeDate(item.create_time),
-		user: makeUser(item.user)
-	};
-};
-
 const makeUser = (item) => {
 	return {
 		id: item.id,
 		createDate: makeDate(item.create_time),
 		fullName: item.full_name,
 		avatarUrl: item.photo_200
+	};
+};
+
+const makeFinish = (item) => {
+	return {
+		createDate: makeDate(item.create_time),
+		user: makeUser(item.user)
 	};
 };
 
