@@ -13,6 +13,8 @@
 
 Онлайн демо версия доступна [здесь](http://climbzillaweb-ncidemo.rhcloud.com), production версия [web.climbzilla.tk](http://web.climbzilla.tk).
 
+Документация по работе с API доступна [здесь](http://climbzilla.tk/api-spec.html).
+
 [![Build Status](https://travis-ci.org/okv/climbzilla-web.svg?branch=master)](https://travis-ci.org/okv/climbzilla-web)
 [![Npm version](https://img.shields.io/npm/v/climbzilla-web.svg)](https://www.npmjs.org/package/climbzilla-web)
 
