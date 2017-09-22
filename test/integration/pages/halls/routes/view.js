@@ -33,20 +33,26 @@ describe('hall routes route page', () => {
 			full_name: 'Ева Орлова',
 			photo_200: 'https://pp.userapi.com/c615828/v615828661/1055b/NaT4OqgDnvI.jpg'
 		},
-		finished_users: [
+		finishes: [
 			{
-				id: 157,
-				vk_id: 700732,
-				create_time: '2017-08-14 13:17:34',
-				full_name: 'Лев Забудько',
-				photo_200: 'https://pp.userapi.com/c628419/v628419732/1a9d7/-HwvOny_iwc.jpg'
+				create_time: '2017-09-14 13:17:34',
+				user: {
+					id: 157,
+					vk_id: 700732,
+					create_time: '2017-08-14 13:17:34',
+					full_name: 'Лев Забудько',
+					photo_200: 'https://pp.userapi.com/c628419/v628419732/1a9d7/-HwvOny_iwc.jpg'
+				}
 			},
 			{
-				id: 9,
-				vk_id: 13406661,
-				create_time: '2017-08-15 13:17:34',
-				full_name: 'Ева Орлова',
-				photo_200: 'https://pp.userapi.com/c615828/v615828661/1055b/NaT4OqgDnvI.jpg'
+				create_time: '2017-09-15 13:17:34',
+				user: {
+					id: 9,
+					vk_id: 13406661,
+					create_time: '2017-08-15 13:17:34',
+					full_name: 'Ева Орлова',
+					photo_200: 'https://pp.userapi.com/c615828/v615828661/1055b/NaT4OqgDnvI.jpg'
+				}
 			}
 		],
 		hall: {
@@ -73,10 +79,10 @@ describe('hall routes route page', () => {
 		}],
 		finishedUsers: [{
 			fullName: 'Лев Забудько',
-			createDateString: '14.08.2017 13:17:34'
+			createDateString: '14.09.2017 13:17:34'
 		}, {
 			fullName: 'Ева Орлова',
-			createDateString: '15.08.2017 13:17:34'
+			createDateString: '15.09.2017 13:17:34'
 		}]
 	};
 
