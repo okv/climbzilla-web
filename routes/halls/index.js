@@ -21,7 +21,7 @@ router.get('/', (req, res, next) => {
 			});
 
 			const sortIteratee = (hall) => {
-				return `${hall.city.name}-${hall.name}`;
+				return `${hall.city.title}-${hall.title}`;
 			};
 
 			const sortedHalls = _(halls).sortBy(sortIteratee);
