@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const http = require('http');
 const Promise = require('bluebird');
 const debug = require('debug')('climbzilla-web:climbzilla-api-server-mock');
+const _ = require('underscore');
 
 const dataDir = pathUtils.join(__dirname, 'data');
 
@@ -21,19 +22,19 @@ const getJsonFile = (fileName) => {
 		});
 };
 
-const getHallsDefault = () => {
+const getHallsResponseDefault = () => {
 	return getJsonFile('halls.json');
 };
 
-const getHallDefault = (req) => {
+const getHallResponseDefault = (req) => {
 	return getJsonFile(`hall-${req.params.hallId}.json`);
 };
 
-const getRoutesDefault = (req) => {
+const getTopsResponseDefault = (req) => {
 	return getJsonFile(`hall-${req.query.hall_id}-tops.json`);
 };
 
-const getRouteDefault = (req) => {
+const getTopResponseDefault = (req) => {
 	return getJsonFile(`top-${req.params.topId}.json`);
 };
 
@@ -46,14 +47,24 @@ const makeLogger = () => {
 	);
 };
 
-const createServer = ({getHalls, getHall, getRoutes, getRoute} = {}) => {
-	const hallsGetter = getHalls || getHallsDefault;
-	const hallGetter = getHall || getHallDefault;
-	const routesGetter = getRoutes || getRoutesDefault;
-	const routeGetter = getRoute || getRouteDefault;
+const makeGetter = (response) => {
+	return _(response).isFunction() ? response : () => {
+		return response;
+	};
+};
+
+const createServer = ({
+	getHallsResponse,
+	getHallResponse,
+	getTopsResponse,
+	getTopResponse
+} = {}) => {
+	const hallsGetter = makeGetter(getHallsResponse || getHallsResponseDefault);
+	const hallGetter = makeGetter(getHallResponse || getHallResponseDefault);
+	const topsGetter = makeGetter(getTopsResponse || getTopsResponseDefault);
+	const topGetter = makeGetter(getTopResponse || getTopResponseDefault);
 
 	const app = express();
-
 
 	app.use(makeLogger());
 
@@ -86,10 +97,10 @@ const createServer = ({getHalls, getHall, getRoutes, getRoute} = {}) => {
 	app.get('/v02/top', (req, res, next) => {
 		Promise.resolve()
 			.then(() => {
-				return routesGetter(req);
+				return topsGetter(req);
 			})
-			.then((routes) => {
-				res.json(routes);
+			.then((tops) => {
+				res.json(tops);
 			})
 			.catch((err) => {
 				next(err);
@@ -99,10 +110,10 @@ const createServer = ({getHalls, getHall, getRoutes, getRoute} = {}) => {
 	app.get('/v02/top/:topId(\\d+)', (req, res, next) => {
 		Promise.resolve()
 			.then(() => {
-				return routeGetter(req);
+				return topGetter(req);
 			})
-			.then((route) => {
-				res.json(route);
+			.then((top) => {
+				res.json(top);
 			})
 			.catch((err) => {
 				next(err);

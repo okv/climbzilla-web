@@ -6,7 +6,7 @@ const helpers = require('../../../helpers');
 tap.mochaGlobals();
 
 describe('hall routes page', () => {
-	const routes = [{
+	const apiTops = [{
 		id: '773',
 		hall_id: '6',
 		user_id: '9',
@@ -22,6 +22,15 @@ describe('hall routes page', () => {
 			photo_200: 'https://pp.userapi.com/c615828/v615828661/1055b/NaT4OqgDnvI.jpg'
 		}
 	}];
+
+	const apiHall = {
+		id: '6',
+		name: 'БФАиС',
+		city: 'Белгород',
+		user_id: '1',
+		create_time: '2017-03-11 16:36:30',
+		tops_count: '17'
+	};
 
 	const expectedRoutes = [{
 		title: 'Дремучий представитель',
@@ -41,9 +50,8 @@ describe('hall routes page', () => {
 	before(() => {
 		app = helpers.createApp({
 			apiServerMockParams: {
-				getRoutes: () => {
-					return routes;
-				}
+				getTopsResponse: apiTops,
+				getHallResponse: apiHall
 			}
 		});
 
