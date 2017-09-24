@@ -11,8 +11,8 @@ const makeDate = (item) => {
 const makeHall = (item) => {
 	return {
 		id: item.id,
-		name: item.name,
-		city: {name: item.city},
+		title: item.name,
+		city: {title: item.city},
 		routesCount: Number(item.tops_count)
 	};
 };

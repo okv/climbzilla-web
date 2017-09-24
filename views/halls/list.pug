@@ -10,10 +10,10 @@ block content
 		each hall in halls
 			.hall-item
 				span.h3
-					a(href=`/halls/${hall.id}/routes`) #{hall.name}
+					a(href=`/halls/${hall.id}/routes`) #{hall.title}
 				.hall-item-bottom-text
 					small.text-muted
-						| #{hall.city.name}
+						| #{hall.city.title}
 						| 
 						| (#{hall.routesCount})
 
@@ -25,7 +25,7 @@ block content
 		#empty-halls
 			each emptyHall in emptyHalls
 				.hall-item
-					span.h3 #{emptyHall.name}
+					span.h3 #{emptyHall.title}
 					.hall-item-bottom-text
 						small.text-muted
-							| #{emptyHall.city.name}
+							| #{emptyHall.city.title}

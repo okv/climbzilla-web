@@ -23,13 +23,13 @@ describe('halls page', () => {
 	}];
 
 	const expectedHalls = [{
-		name: 'БФАиС',
+		title: 'БФАиС',
 		bottomText: 'Белгород (17)',
 		routesUrl: '/halls/6/routes'
 	}];
 
 	const expectedEmptyHalls = [{
-		name: 'Море возможностей',
+		title: 'Море возможностей',
 		bottomText: 'Иркутск'
 	}];
 
@@ -79,7 +79,7 @@ describe('halls page', () => {
 				.text()
 				.replace(/\n/g, '');
 			return {
-				name: routesHref.text(),
+				title: routesHref.text(),
 				bottomText,
 				routesUrl: routesHref.attr('href')
 			};
@@ -97,7 +97,7 @@ describe('halls page', () => {
 		const pageEmptyHalls = $('#empty-halls .hall-item').map(
 			function mapHalls() {
 				return {
-					name: $(this).find('.h3').text(),
+					title: $(this).find('.h3').text(),
 					bottomText: $(this).find('.hall-item-bottom-text').text()
 				};
 			}
