@@ -1,48 +1,49 @@
 const fs = require('fs');
 const pathUtils = require('path');
-// eslint-disable-next-line import/no-extraneous-dependencies
-const mocky = require('mocky');
+const express = require('express');
+const logger = require('morgan');
+const http = require('http');
 const Promise = require('bluebird');
 const debug = require('debug')('climbzilla-web:climbzilla-api-server-mock');
-const queryString = require('querystring');
-const _ = require('underscore');
 
 const dataDir = pathUtils.join(__dirname, 'data');
 
-const getFile = (fileName) => {
+const getJsonFile = (fileName) => {
 	return Promise.resolve()
 		.then(() => {
 			return pathUtils.join(dataDir, fileName);
 		})
-		.then((filePath) => {
-			return fs.readFileAsync(filePath, {encoding: 'utf8'});
+		.then((path) => {
+			return fs.readFileAsync(path, {encoding: 'utf8'});
+		})
+		.then((content) => {
+			return JSON.parse(content);
 		});
 };
 
 const getHallsDefault = () => {
-	return getFile('halls.json');
+	return getJsonFile('halls.json');
 };
 
 const getHallDefault = (req) => {
-	const urlParts = req.url.split('/');
-	const hallId = urlParts[urlParts.length - 1];
-
-	return getFile(`hall-${hallId}.json`);
+	return getJsonFile(`hall-${req.params.hallId}.json`);
 };
 
 const getRoutesDefault = (req) => {
-	const query = queryString.parse(req.url.split('?')[1]);
-
-	return getFile(`hall-${query.hall_id}-tops.json`);
+	return getJsonFile(`hall-${req.query.hall_id}-tops.json`);
 };
 
 const getRouteDefault = (req) => {
-	const urlParts = req.url.split('/');
-	const topIdWithParams = urlParts[urlParts.length - 1];
-	const topIdParts = topIdWithParams.split('?');
-	const topId = topIdParts[0];
+	return getJsonFile(`top-${req.params.topId}.json`);
+};
 
-	return getFile(`top-${topId}.json`);
+const makeLogger = () => {
+	const grey = {open: '\u001b[90m', close: '\u001b[39m'};
+	const prefix = `${grey.open}[climbzilla api mock]${grey.close}`;
+
+	return logger(
+		`${prefix} :method :url :status :response-time ms - :res[content-length]`
+	);
 };
 
 const createServer = ({getHalls, getHall, getRoutes, getRoute} = {}) => {
@@ -51,75 +52,68 @@ const createServer = ({getHalls, getHall, getRoutes, getRoute} = {}) => {
 	const routesGetter = getRoutes || getRoutesDefault;
 	const routeGetter = getRoute || getRouteDefault;
 
-	const server = mocky.createServer([{
-		url: '/v03/hall',
-		method: 'get',
-		res(req, res, callback) {
-			Promise.resolve()
-				.then(() => {
-					return hallsGetter(req, res);
-				})
-				.then((halls) => {
-					const body = _(halls).isString() ? halls : JSON.stringify(halls);
+	const app = express();
 
-					callback(null, {status: 200, body});
-				})
-				.catch((err) => {
-					callback(err);
-				});
-		}
-	}, {
-		url: new RegExp('^/v03/hall/\\d+'),
-		method: 'get',
-		res(req, res, callback) {
-			Promise.resolve()
-				.then(() => {
-					return hallGetter(req, res);
-				})
-				.then((hall) => {
-					const body = _(hall).isString() ? hall : JSON.stringify(hall);
 
-					callback(null, {status: 200, body});
-				})
-				.catch((err) => {
-					callback(err);
-				});
-		}
-	}, {
-		url: new RegExp('^/v02/top\\?hall_id=\\d+'),
-		method: 'get',
-		res(req, res, callback) {
-			Promise.resolve()
-				.then(() => {
-					return routesGetter(req, res);
-				})
-				.then((routes) => {
-					const body = _(routes).isString() ? routes : JSON.stringify(routes);
+	app.use(makeLogger());
 
-					callback(null, {status: 200, body});
-				})
-				.catch((err) => {
-					callback(err);
-				});
-		}
-	}, {
-		url: new RegExp('^/v02/top/\\d+'),
-		method: 'get',
-		res(req, res, callback) {
-			Promise.resolve()
-				.then(() => {
-					return routeGetter(req, res);
-				})
-				.then((route) => {
-					const body = _(route).isString() ? route : JSON.stringify(route);
+	app.get('/v03/hall', (req, res, next) => {
+		Promise.resolve()
+			.then(() => {
+				return hallsGetter(req);
+			})
+			.then((halls) => {
+				res.json(halls);
+			})
+			.catch((err) => {
+				next(err);
+			});
+	});
 
-					callback(null, {status: 200, body});
-				})
-				.catch((err) => {
-					callback(err);
-				});
-		}
-	}]);
+	app.get('/v03/hall/:hallId(\\d+)', (req, res, next) => {
+		Promise.resolve()
+			.then(() => {
+				return hallGetter(req);
+			})
+			.then((hall) => {
+				res.json(hall);
+			})
+			.catch((err) => {
+				next(err);
+			});
+	});
+
+	app.get('/v02/top', (req, res, next) => {
+		Promise.resolve()
+			.then(() => {
+				return routesGetter(req);
+			})
+			.then((routes) => {
+				res.json(routes);
+			})
+			.catch((err) => {
+				next(err);
+			});
+	});
+
+	app.get('/v02/top/:topId(\\d+)', (req, res, next) => {
+		Promise.resolve()
+			.then(() => {
+				return routeGetter(req);
+			})
+			.then((route) => {
+				res.json(route);
+			})
+			.catch((err) => {
+				next(err);
+			});
+	});
+
+	const server = http.createServer(app);
+
+	server.on('error', (err) => {
+		throw err;
+	});
 
 	server.on('listening', () => {
 		const address = server.address();
