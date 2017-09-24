@@ -170,15 +170,15 @@ describe('hall routes route page', () => {
 		expect(pagePhotos).eql(expectedRoute.photos);
 	});
 
-	it('should have finished users list', () => {
-		const finishes = $('#route-finished-users li').map(
+	it('should have finishes list', () => {
+		const finishes = $('#route-finishes li').map(
 			function mapFinishes() {
 				return {
 					fullName: (
-						$(this).find('.route-finished-user-item-full-name').text()
+						$(this).find('.route-finishes-item-full-name').text()
 					),
 					createDateString: (
-						$(this).find('.route-finished-user-item-create-date').text()
+						$(this).find('.route-finishes-item-create-date').text()
 					)
 				};
 			}

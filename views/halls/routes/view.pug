@@ -47,14 +47,14 @@ block content
 							.text-center #{photo.description}
 
 	if route.finishes.length
-		#route-finished-users
+		#route-finishes
 			strong
 				| Трассу прошли:
 			ul(style="margin-top: 10px;")
 				each finish in route.finishes
 					li
-						span.route-finished-user-item-full-name
+						span.route-finishes-item-full-name
 							| #{finish.user.fullName}
 						| 
-						small.text-muted.route-finished-user-item-create-date
+						small.text-muted.route-finishes-item-create-date
 							| #{formatDate(finish.createDate)}
