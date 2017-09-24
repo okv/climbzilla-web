@@ -36,7 +36,15 @@ router.get('/:routeId(\\d+)', (req, res, next) => {
 		.then(() => {
 			return climbzillaApiRequest.getRoute(routeId);
 		})
-		.then((route) => {
+		.then((originalRoute) => {
+			const sortedFinishes = _(originalRoute.finishes).sortBy((finish) => {
+				return finish.createDate * -1;
+			});
+
+			const route = Object.assign({}, originalRoute, {
+				finishes: sortedFinishes
+			});
+
 			return res.render('halls/routes/view', {route});
 		})
 		.catch((err) => {

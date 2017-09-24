@@ -77,12 +77,13 @@ describe('hall routes route page', () => {
 			url: 'http://api.climbzilla.tk/s/tops/773/a8l4tu82d36szuqs3.jpg',
 			description: 'описание к фотографии 2'
 		}],
-		finishedUsers: [{
-			fullName: 'Лев Забудько',
-			createDateString: '14.09.2017 13:17:34'
-		}, {
+		// finishes should be sorted by date desc
+		finishes: [{
 			fullName: 'Ева Орлова',
 			createDateString: '15.09.2017 13:17:34'
+		}, {
+			fullName: 'Лев Забудько',
+			createDateString: '14.09.2017 13:17:34'
 		}]
 	};
 
@@ -169,21 +170,21 @@ describe('hall routes route page', () => {
 		expect(pagePhotos).eql(expectedRoute.photos);
 	});
 
-	it('should have finished users list', () => {
-		const finishedUsers = $('#route-finished-users li').map(
-			function mapFinishedUsers() {
+	it('should have finishes list', () => {
+		const finishes = $('#route-finishes li').map(
+			function mapFinishes() {
 				return {
 					fullName: (
-						$(this).find('.route-finished-user-item-full-name').text()
+						$(this).find('.route-finishes-item-full-name').text()
 					),
 					createDateString: (
-						$(this).find('.route-finished-user-item-create-date').text()
+						$(this).find('.route-finishes-item-create-date').text()
 					)
 				};
 			}
 		).get();
 
-		expect(finishedUsers).eql(expectedRoute.finishedUsers);
+		expect(finishes).eql(expectedRoute.finishes);
 	});
 
 	after(() => {
