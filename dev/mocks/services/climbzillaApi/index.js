@@ -1,7 +1,7 @@
 const fs = require('fs');
 const pathUtils = require('path');
 const express = require('express');
-const logger = require('morgan');
+const morgan = require('morgan');
 const http = require('http');
 const Promise = require('bluebird');
 const debug = require('debug')('climbzilla-web:climbzilla-api-server-mock');
@@ -41,7 +41,7 @@ const makeLogger = () => {
 	const grey = {open: '\u001b[90m', close: '\u001b[39m'};
 	const prefix = `${grey.open}[climbzilla api mock]${grey.close}`;
 
-	return logger(
+	return morgan(
 		`${prefix} :method :url :status :response-time ms - :res[content-length]`
 	);
 };

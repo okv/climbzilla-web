@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const debug = require('debug')('climbzilla-web:app');
 // const favicon = require('serve-favicon');
-const logger = require('morgan');
+const morgan = require('morgan');
 const Promise = require('bluebird');
 const moment = require('moment');
 
@@ -53,7 +53,7 @@ Promise.resolve()
 
 		// uncomment after placing your favicon in /public
 		// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-		app.use(logger('dev'));
+		app.use(morgan('dev'));
 		app.use(express.static(path.join(__dirname, 'public')));
 
 		app.use('/', indexRouter);
