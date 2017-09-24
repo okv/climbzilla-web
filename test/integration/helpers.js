@@ -2,7 +2,7 @@ const http = require('http');
 const Promise = require('bluebird').Promise;
 const got = require('got');
 const app = require('../../app');
-const createApiServerMock = require('../../dev/mocks/services/climbzillaApi');
+const createApiServerMock = require('../../utils/mocks/services/climbzillaApi');
 const configHolder = require('../../config/holder');
 
 const serverRequest = (path, options) => {

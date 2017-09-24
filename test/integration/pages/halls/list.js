@@ -6,7 +6,7 @@ const helpers = require('../../helpers');
 tap.mochaGlobals();
 
 describe('halls page', () => {
-	const allHalls = [{
+	const apiHalls = [{
 		id: '6',
 		name: 'БФАиС',
 		city: 'Белгород',
@@ -38,9 +38,7 @@ describe('halls page', () => {
 	before(() => {
 		app = helpers.createApp({
 			apiServerMockParams: {
-				getHalls: () => {
-					return allHalls;
-				}
+				getHallsResponse: apiHalls
 			}
 		});
 

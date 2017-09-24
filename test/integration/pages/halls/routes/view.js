@@ -6,7 +6,7 @@ const helpers = require('../../../helpers');
 tap.mochaGlobals();
 
 describe('hall routes route page', () => {
-	const route = {
+	const apiTop = {
 		id: '773',
 		hall_id: '6',
 		user_id: '9',
@@ -96,15 +96,12 @@ describe('hall routes route page', () => {
 		title: 'Дремучий представитель 5c'
 	}];
 
-
 	let app;
 
 	before(() => {
 		app = helpers.createApp({
 			apiServerMockParams: {
-				getRoute: () => {
-					return route;
-				}
+				getTopResponse: apiTop
 			}
 		});
 
