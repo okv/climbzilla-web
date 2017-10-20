@@ -13,6 +13,14 @@ block content
 
 	h1 Трассы
 
+	#routes-sort-rules Сортировка: 
+		if (sortBy !== 'createDate')
+			| сложность, 
+			a(href=`/halls/${hall.id}/routes/?sortBy=createDate`) добавлено
+		else
+			a(href=`/halls/${hall.id}/routes/`) сложность
+			|, добавлено
+
 	#routes
 		each route in routes
 			.route-item

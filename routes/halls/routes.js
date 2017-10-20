@@ -9,6 +9,7 @@ module.exports = router;
 
 router.get('/', (req, res, next) => {
 	const hallId = Number(req.params.hallId);
+	const sortBy = req.query.sortBy;
 
 	Promise.resolve()
 		.then(() => {
@@ -19,10 +20,13 @@ router.get('/', (req, res, next) => {
 		})
 		.then(([hall, routes]) => {
 			const sortedRoutes = _(routes).sortBy((route) => {
+				if (sortBy === 'createDate') {
+					return `${route.createDate}` * -1;
+				}
 				return `${route.grade.numeric}-${route.title.toLowerCase()}`;
 			});
 
-			return res.render('halls/routes/list', {hall, routes: sortedRoutes});
+			return res.render('halls/routes/list', {hall, routes: sortedRoutes, sortBy});
 		})
 		.catch((err) => {
 			return next(err);
