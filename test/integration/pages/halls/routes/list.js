@@ -122,13 +122,13 @@ describe('hall routes page', () => {
 		expect(text).equal('Трассы');
 	});
 
-	it('should have routes sort rules', () => {
-		const text = $('#routes-sort-rules').text();
+	it('should have routes sort by', () => {
+		const text = $('#routes-sort').text();
 		expect(text).equal('Сортировка: сложность, добавлено');
 	});
 
 	it('should have sort rule active', () => {
-		const text = $('#routes-sort-rules').find('a').text();
+		const text = $('#routes-sort').find('a').text();
 		expect(text).equal('добавлено');
 	});
 
@@ -148,7 +148,7 @@ describe('hall routes page', () => {
 	it('load with sort by create date DESC', () => {
 		return Promise.resolve()
 			.then(() => {
-				return helpers.serverRequest('/halls/6/routes?sortBy=createDate');
+				return helpers.serverRequest('/halls/6/routes?sort=createDate');
 			})
 			.then((res) => {
 				expect(res.statusCode).equal(200);

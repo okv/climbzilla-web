@@ -17,7 +17,7 @@ body {
 		padding-bottom: 20px !important;
 	}
 
-	#routes-sort-rules {
+	#routes-sort {
 		font-size: 130%;
 	}
 
@@ -43,7 +43,7 @@ body {
 	padding-bottom: 10px;
 }
 
-#routes-sort-rules {
+#routes-sort {
 	padding-bottom: 20px;
 }
 

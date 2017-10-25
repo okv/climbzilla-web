@@ -7,9 +7,24 @@ const router = express.Router({mergeParams: true});
 
 module.exports = router;
 
+const sortersHash = {
+	grade: (route) => {
+		return `${route.grade.numeric}-${route.title.toLowerCase()}`;
+	},
+	createDate: (route) => {
+		return route.createDate * -1;
+	}
+};
+
+const sortersTitleHash = {
+	grade: 'сложность',
+	createDate: 'добавлено'
+};
+
 router.get('/', (req, res, next) => {
 	const hallId = Number(req.params.hallId);
-	const sortBy = req.query.sortBy;
+	const sort = _(sortersHash).has(req.query.sort) ? req.query.sort : 'grade';
+	const sorter = sortersHash[sort];
 
 	Promise.resolve()
 		.then(() => {
@@ -19,14 +34,8 @@ router.get('/', (req, res, next) => {
 			);
 		})
 		.then(([hall, routes]) => {
-			const sortedRoutes = _(routes).sortBy((route) => {
-				if (sortBy === 'createDate') {
-					return `${route.createDate}` * -1;
-				}
-				return `${route.grade.numeric}-${route.title.toLowerCase()}`;
-			});
-
-			return res.render('halls/routes/list', {hall, routes: sortedRoutes, sortBy});
+			const sortedRoutes = _(routes).sortBy(sorter);
+			return res.render('halls/routes/list', {hall, routes: sortedRoutes, sortersTitleHash, sort});
 		})
 		.catch((err) => {
 			return next(err);
