@@ -14,13 +14,17 @@ block content
 	h1 Трассы
 
 	#routes-sort Сортировка: 
-		each sortTitle, sortRule in sortersTitleHash
-			if (sort === sortRule)
-				| #{sortTitle}
+		- const sorterNames = Object.keys(sorterTitlesHash);
+
+		each name, index in sorterNames
+			- const title = sorterTitlesHash[name];
+
+			if (name === sort)
+				| #{title}
 			else
-				a(href=`/halls/${hall.id}/routes/?sort=${sortRule}`) #{sortTitle}
-				
-			if (Object.keys(sortersTitleHash)[Object.keys(sortersTitleHash).length - 1] !== sortRule)
+				a(href=`/halls/${hall.id}/routes/?sort=${name}`) #{title}
+
+			if (index < sorterNames.length - 1)
 				|, 
 		
 	#routes

@@ -16,7 +16,7 @@ const sortersHash = {
 	}
 };
 
-const sortersTitleHash = {
+const sorterTitlesHash = {
 	grade: 'сложность',
 	createDate: 'добавлено'
 };
@@ -35,7 +35,10 @@ router.get('/', (req, res, next) => {
 		})
 		.then(([hall, routes]) => {
 			const sortedRoutes = _(routes).sortBy(sorter);
-			return res.render('halls/routes/list', {hall, routes: sortedRoutes, sortersTitleHash, sort});
+			return res.render(
+				'halls/routes/list',
+				{hall, routes: sortedRoutes, sorterTitlesHash, sort}
+			);
 		})
 		.catch((err) => {
 			return next(err);
