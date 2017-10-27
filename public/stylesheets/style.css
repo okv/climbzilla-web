@@ -17,6 +17,10 @@ body {
 		padding-bottom: 20px !important;
 	}
 
+	#routes-sort {
+		font-size: 130%;
+	}
+
 	#route-fields {
 		font-size: 150%;
 	}
@@ -37,6 +41,10 @@ body {
 .hall-item, .route-item {
 	padding-top: 10px;
 	padding-bottom: 10px;
+}
+
+#routes-sort {
+	padding-bottom: 20px;
 }
 
 .img-item {

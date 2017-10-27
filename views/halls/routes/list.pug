@@ -13,6 +13,16 @@ block content
 
 	h1 Трассы
 
+	#routes-sort Сортировка: 
+		each sortTitle, sortRule in sortersTitleHash
+			if (sort === sortRule)
+				| #{sortTitle}
+			else
+				a(href=`/halls/${hall.id}/routes/?sort=${sortRule}`) #{sortTitle}
+				
+			if (Object.keys(sortersTitleHash)[Object.keys(sortersTitleHash).length - 1] !== sortRule)
+				|, 
+		
 	#routes
 		each route in routes
 			.route-item

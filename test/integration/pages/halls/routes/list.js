@@ -21,6 +21,22 @@ describe('hall routes page', () => {
 			full_name: 'Ева Орлова',
 			photo_200: 'https://pp.userapi.com/c615828/v615828661/1055b/NaT4OqgDnvI.jpg'
 		}
+	},
+	{
+		id: '768',
+		hall_id: '6',
+		user_id: '131',
+		grade: '19',
+		title: 'Гранитный палец',
+		create_time: '2017-08-14 21:44:13',
+		photos: [],
+		author: {
+			id: 131,
+			vk_id: 17583264,
+			create_time: '2017-07-31 16:40:34',
+			full_name: 'Анатолий Смакаев',
+			photo_200: 'https://pp.userapi.com/c407924/v407924264/8869/Fui_JEmY_QU.jpg'
+		}
 	}];
 
 	const apiHall = {
@@ -36,6 +52,11 @@ describe('hall routes page', () => {
 		title: 'Дремучий представитель',
 		grade: {title: '5c'},
 		routeUrl: '/halls/6/routes/773'
+	},
+	{
+		title: 'Гранитный палец',
+		grade: {title: '6b+'},
+		routeUrl: '/halls/6/routes/768'
 	}];
 
 	const expectedBreadcrumbs = [{
@@ -101,6 +122,16 @@ describe('hall routes page', () => {
 		expect(text).equal('Трассы');
 	});
 
+	it('should have routes sort by', () => {
+		const text = $('#routes-sort').text();
+		expect(text).equal('Сортировка: сложность, добавлено');
+	});
+
+	it('should have sort rule active', () => {
+		const text = $('#routes-sort').find('a').text();
+		expect(text).equal('добавлено');
+	});
+
 	it('should have routes list', () => {
 		const pageRoutes = $('#routes .route-item').map(function mapRoutes() {
 			const routeHref = $(this).find('.h3 a');
@@ -112,6 +143,31 @@ describe('hall routes page', () => {
 		}).get();
 
 		expect(pageRoutes).eql(expectedRoutes);
+	});
+
+	it('load with sort by create date DESC', () => {
+		return Promise.resolve()
+			.then(() => {
+				return helpers.serverRequest('/halls/6/routes?sort=createDate');
+			})
+			.then((res) => {
+				expect(res.statusCode).equal(200);
+
+				$ = cheerio.load(res.body);
+			});
+	});
+
+	it('should have routes list sorted by create date DESC', () => {
+		const pageRoutes = $('#routes .route-item').map(function mapRoutes() {
+			const routeHref = $(this).find('.h3 a');
+			return {
+				title: routeHref.text(),
+				grade: {title: $(this).find('small.text-muted').text()},
+				routeUrl: routeHref.attr('href')
+			};
+		}).get();
+
+		expect(pageRoutes).eql(expectedRoutes.reverse());
 	});
 
 	after(() => {
